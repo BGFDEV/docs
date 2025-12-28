@@ -10,30 +10,39 @@ Preference ranking is the primary output of VMSWO assessments. This guide explai
 
 EdgeFlow calculates preference rankings by aggregating selection data across all 3 blocks of a VMSWO assessment.
 
-### Selection Scoring
+### Selection Position
 
-Each time a stimulus is selected, it receives a score based on when it was chosen:
+Each stimulus is tracked by when it was selected in each block:
 
-| Selection Order | Score |
+| Selection Order | Position Value |
 | --- | --- |
-| 1st (from 5 stimuli) | 5 points |
-| 2nd (from 4 stimuli) | 4 points |
-| 3rd (from 3 stimuli) | 3 points |
-| 4th (from 2 stimuli) | 2 points |
-| 5th (last remaining) | 1 point |
+| 1st selected (from 5 stimuli) | 1 |
+| 2nd selected (from 4 stimuli) | 2 |
+| 3rd selected (from 3 stimuli) | 3 |
+| 4th selected (from 2 stimuli) | 4 |
+| 5th selected (last remaining) | 5 |
 
-### Aggregation
+### Preference Percentage Calculation
 
-Scores are summed across all 3 blocks:
+EdgeFlow calculates a **preference percentage** for each stimulus using the average selection position across all blocks:
 
-- **Maximum possible**: 15 points (selected 1st in all 3 blocks)
-- **Minimum possible**: 3 points (selected last in all 3 blocks)
+```
+Preference % = ((6 - Average Selection Position) / 5) × 100
+```
 
-Stimuli are then ranked by total score, with the highest score receiving Rank 1.
+| Average Position | Preference % | Interpretation |
+| --- | --- | --- |
+| 1.0 (always 1st) | 100% | Highest preference |
+| 2.0 (always 2nd) | 80% | High preference |
+| 3.0 (always 3rd) | 60% | Moderate preference |
+| 4.0 (always 4th) | 40% | Low preference |
+| 5.0 (always 5th) | 20% | Lowest preference |
+
+Stimuli are ranked by preference percentage, with the highest percentage receiving Rank 1.
 
 ### Handling Ties
 
-When stimuli have equal scores:
+When stimuli have equal preference percentages:
 
 1. EdgeFlow uses first-selection frequency as a tiebreaker
 2. If still tied, the order from the most recent block determines rank
@@ -100,7 +109,7 @@ Each stimulus occupies:
 
 If a participant consistently selects the first stimulus regardless of content:
 
-- All stimuli would receive similar scores (5, 4, 3 depending on rotation)
+- All stimuli would receive similar preference percentages due to counterbalancing
 - No clear preference pattern would emerge
 - EdgeFlow highlights this pattern in results
 
@@ -115,16 +124,16 @@ A strong preference pattern shows one or two stimuli consistently ranked 1st or 
 </Check>
 
 Example:
-- Stimulus A: Rank 1 (score 15/15)
-- Stimulus B: Rank 2 (score 12/15)
-- Stimulus C: Rank 3 (score 7/15)
-- Stimulus D: Rank 4 (score 5/15)
-- Stimulus E: Rank 5 (score 3/15)
+- Stimulus A: Rank 1 (100% preference, always selected 1st)
+- Stimulus B: Rank 2 (80% preference, average position 2.0)
+- Stimulus C: Rank 3 (53% preference, average position 3.3)
+- Stimulus D: Rank 4 (40% preference, average position 4.0)
+- Stimulus E: Rank 5 (27% preference, average position 4.7)
 
 ### Weak or Unclear Patterns
 
 <Warning>
-When scores cluster together (e.g., all between 8-10), preferences may not be well-differentiated. Consider:
+When preference percentages cluster together (e.g., all between 50-60%), preferences may not be well-differentiated. Consider:
 - Using different stimuli
 - Re-running the assessment on a different day
 - Evaluating if the participant understands the task
@@ -132,7 +141,7 @@ When scores cluster together (e.g., all between 8-10), preferences may not be we
 
 ### No Preference
 
-If all stimuli receive similar scores across blocks, the participant may:
+If all stimuli receive similar preference percentages across blocks, the participant may:
 - Have no strong preference among the options
 - Not understand the task
 - Be selecting randomly

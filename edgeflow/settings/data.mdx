@@ -155,9 +155,10 @@ The Data Management screen shows:
 
 | Setting | Default | Options | Description |
 | --- | --- | --- | --- |
-| Default Format | CSV | CSV/JSON | Pre-selected format in export dialogs |
-| Decimal Precision | 2 | 2-4 | Decimal places for numbers |
+| Default Format | CSV | CSV/JSON/HTML/SPSS | Pre-selected format in export dialogs |
+| Decimal Precision | 3 | 2-4 | Decimal places for numbers |
 | Date Format | ISO | ISO/US/EU | Timestamp formatting |
+| Timezone | UTC | System/UTC | Timezone for timestamps |
 | Include Raw Force Data | No | Yes/No | Include 20Hz samples by default |
 
 ### Export Folder
@@ -173,12 +174,13 @@ The Data Management screen shows:
 
 ### Encryption
 
-EdgeFlow uses SQLCipher for database encryption:
+EdgeFlow uses AES-256-GCM encryption with Argon2id key derivation:
 
 | Feature | Description |
 | --- | --- |
-| Algorithm | AES-256 |
-| Key Derivation | Argon2id |
+| Algorithm | AES-256-GCM (authenticated encryption) |
+| Key Derivation | Argon2id (memory-hard, 64MB, 3 iterations) |
+| Key Length | 256 bits (32 bytes) |
 | At-Rest Encryption | All data encrypted on disk |
 
 ### Password Management

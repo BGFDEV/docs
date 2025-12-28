@@ -44,8 +44,8 @@ Before connecting:
   <Step title="Select Serial Port">
     From the **Port** dropdown, select your Arduino's port.
   </Step>
-  <Step title="Set Baud Rate">
-    Ensure baud rate is set to **115200** (default for EdgeFlow firmware).
+  <Step title="Verify Baud Rate">
+    The baud rate is fixed at **9600** (hardcoded in EdgeFlow firmware).
   </Step>
   <Step title="Test Connection">
     Click **Test Connection**. You should see:
@@ -64,7 +64,7 @@ Before connecting:
 | Setting | Default | Description |
 | --- | --- | --- |
 | Serial Port | Auto-detect | The COM port or device path |
-| Baud Rate | 115200 | Communication speed |
+| Baud Rate | 9600 | Communication speed (fixed) |
 | Auto-reconnect | Enabled | Automatically reconnect if disconnected |
 | Timeout | 5 seconds | Connection timeout threshold |
 
@@ -145,7 +145,7 @@ EdgeFlow shows connection status in multiple places:
   </Accordion>
   <Accordion title="Connection test fails">
     - Verify correct port is selected
-    - Ensure baud rate matches firmware (115200)
+    - Ensure baud rate matches firmware (9600)
     - Check that no other application is using the port (Arduino IDE, serial monitor)
     - Restart EdgeFlow and try again
   </Accordion>
@@ -165,18 +165,6 @@ EdgeFlow shows connection status in multiple places:
 ---
 
 ## Advanced Configuration
-
-### Custom Baud Rate
-
-If using custom firmware with different baud rate:
-
-1. Open **Settings** > **Hardware** > **Advanced**
-2. Enter custom baud rate
-3. Test connection
-
-<Warning>
-Only change baud rate if you've modified the Arduino firmware. Mismatched baud rates will prevent communication.
-</Warning>
 
 ### Connection Logging
 

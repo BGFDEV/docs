@@ -69,13 +69,25 @@ Contact your equipment supplier to confirm Arduino compatibility before purchasi
 
 ## Wiring Overview
 
-A typical setup connects:
+The default EdgeFlow firmware is designed for the IPS121C Hand Dynamometer with direct analog connection:
 
 ```
-Force Sensor → HX711 Amplifier → Arduino → USB → Computer
+Dynamometer → Arduino A0 → USB → Computer
 ```
 
-### HX711 Connection
+### Default Setup (IPS121C Dynamometer)
+
+| Connection | Arduino Pin |
+| --- | --- |
+| Signal (voltage output) | A0 (Analog) |
+| Power | 5V |
+| Ground | GND |
+
+The firmware maps the 0-5V analog input to a 0-60kg force range.
+
+### Alternative: HX711 Load Cell Setup
+
+If using a load cell with HX711 amplifier, custom firmware modifications are required:
 
 | HX711 Pin | Arduino Pin |
 | --- | --- |
@@ -84,17 +96,8 @@ Force Sensor → HX711 Amplifier → Arduino → USB → Computer
 | DT (Data) | Digital Pin 2 |
 | SCK (Clock) | Digital Pin 3 |
 
-### Load Cell Connection
-
-| Load Cell Wire | HX711 Terminal |
-| --- | --- |
-| Red (E+) | E+ |
-| Black (E-) | E- |
-| White (A-) | A- |
-| Green (A+) | A+ |
-
 <Warning>
-Wiring varies by load cell manufacturer. Always consult your specific sensor's documentation.
+The default EdgeFlow firmware expects direct analog input on A0. Load cell setups with HX711 require firmware modifications.
 </Warning>
 
 ---
@@ -137,8 +140,8 @@ Before using in assessments, verify your hardware:
 
 1. Open Arduino IDE
 2. Go to **Tools** > **Serial Monitor**
-3. Set baud rate to 115200
-4. You should see force readings (in kg) appearing every 50ms
+3. Set baud rate to **9600**
+4. You should see force readings in `FORCE:XX.XXX` format appearing every 50ms
 
 ### EdgeFlow Detection Test
 

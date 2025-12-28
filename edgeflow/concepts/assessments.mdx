@@ -62,7 +62,7 @@ Conjugate reinforcement assessment measures behavioral engagement with stimuli t
     The stimulus clarity fades over time. Applying grip force restores clarity, creating a contingency between effort and stimulus access.
   </Step>
   <Step title="Trial Completion">
-    After the trial duration elapses, the stimulus is removed and an inter-trial interval begins before the next stimulus.
+    The trial ends when clarity drops to 10% or max duration elapses. The stimulus is removed and an inter-trial interval begins before the next stimulus.
   </Step>
 </Steps>
 
@@ -70,12 +70,13 @@ Conjugate reinforcement assessment measures behavioral engagement with stimuli t
 
 The "clarity" system creates a conjugate reinforcement schedule:
 
-- **Clarity starts at 100%** (fully visible/audible)
-- **Clarity fades at a configurable rate** (default: 10% per second)
+- **Initial clarity period**: Stimulus remains at 100% for 1 second before fading begins
+- **Clarity fades** at a configurable rate (default: 10% per second)
 - **Applying force restores clarity** proportionally (default: 10 clarity units per 1 kg of force)
-- **Minimum clarity is 10%** (stimulus never completely disappears)
+- **Trial ends when clarity reaches 10%** (or when max duration elapses, if configured)
+- **Trial start threshold**: 2.0 kg minimum force required to begin a trial (prevents accidental triggers)
 
-This mechanic means participants must actively engage (grip harder) to maintain access to preferred stimuli.
+This mechanic means participants must actively engage (grip harder) to maintain access to preferred stimuli. Trials automatically end when engagement drops too low.
 
 ### Force Metrics
 

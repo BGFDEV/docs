@@ -40,17 +40,20 @@ The standard VMSWO methodology uses 3 blocks with circular rotation. Only change
 
 | Setting | Default | Range | Description |
 | --- | --- | --- | --- |
-| Trial Duration | 30 seconds | 10-120 sec | Maximum length per stimulus trial |
-| Unlimited Duration | Off | On/Off | Allow trials to run until manually ended |
+| Max Trial Duration | None (unlimited) | 10-120 sec or None | Maximum length per stimulus trial |
+
+<Note>
+By default, trials have no time limit and end when clarity drops to 10%. Set a max duration if you need fixed-length trials.
+</Note>
 
 ### Clarity Mechanic
 
 | Setting | Default | Range | Description |
 | --- | --- | --- | --- |
-| Initial Clarity | 100% | 50-100% | Starting clarity when stimulus appears |
-| Fade Rate | 10%/sec | 5-20%/sec | How quickly clarity decreases |
-| Force-to-Clarity Ratio | 10:1 | 5-20:1 | Clarity units restored per kg of force |
-| Minimum Clarity | 10% | 0-50% | Clarity floor (never goes below this) |
+| Initial Clarity Duration | 1 second | 0-5 sec | Time stimulus stays at 100% before fading |
+| Fade Rate | 10%/sec | 1-50%/sec | How quickly clarity decreases |
+| Force-to-Clarity Ratio | 10:1 | 1-100:1 | Clarity units restored per kg of force |
+| Trial End Threshold | 10% | N/A | Trial ends when clarity drops to this level |
 
 <Tip>
 Lower fade rates and higher force ratios make the task easier. Adjust based on participant capabilities and your research goals.
@@ -72,14 +75,14 @@ Control the order stimuli are presented during conjugate phase:
 
 | Option | Description |
 | --- | --- |
+| Quasi-Random (default) | Randomized with constraints (no consecutive repeats) |
 | VMSWO-Ranked | Present in order of VMSWO preference (HP first) |
-| Quasi-Random | Randomized with constraints (no repeats) |
-| Counterbalanced | Systematic rotation across participants |
-| Fully Random | Completely randomized order |
+| Counterbalanced | Systematic Latin square rotation across participants |
+| Fully Random | Completely randomized order (not recommended) |
 
-<Note>
-For Full Protocol sessions, VMSWO-Ranked order allows evaluation of whether participants apply more force early (when HP stimuli appear) vs. late (LP stimuli).
-</Note>
+<Tip>
+**Quasi-random** is the default and recommended for most research protocols. It provides experimental control while avoiding order effects.
+</Tip>
 
 ---
 
@@ -125,18 +128,19 @@ Most settings can be overridden when creating a session:
 | --- | --- |
 | VMSWO Blocks | 3 |
 | Counterbalancing | Circular rotation |
-| Trial Duration | 30 seconds |
+| Max Trial Duration | None (clarity-based ending) |
 | ITI Duration | 3 seconds |
 | Fade Rate | 10%/sec |
+| Presentation Order | Quasi-random |
 
 ### Participants with Motor Limitations
 
 | Setting | Value |
 | --- | --- |
-| Trial Duration | 45-60 seconds |
+| Max Trial Duration | 45-60 seconds |
 | Fade Rate | 5%/sec |
 | Force-to-Clarity Ratio | 15:1 or 20:1 |
-| Minimum Clarity | 25% |
+| Initial Clarity Duration | 2-3 seconds |
 
 ### Quick Screening
 

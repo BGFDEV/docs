@@ -44,16 +44,36 @@ The stimulus library is your central repository for all stimulus files.
   </Step>
 </Steps>
 
-### File Recommendations
+### File Requirements
 
-| Stimulus Type | Recommended Format | Max Size |
-| --- | --- | --- |
-| Images | PNG or JPG | 5 MB per file |
-| Audio | MP3 | 10 MB per file |
+**Images:**
+| Requirement | Value |
+| --- | --- |
+| Formats | PNG, JPG, GIF, WebP |
+| Max Size | 5 MB per file |
+| Min Dimensions | 800 × 600 pixels |
+| Recommended Aspect Ratio | 4:3 |
+
+**Audio:**
+| Requirement | Value |
+| --- | --- |
+| Formats | MP3 |
+| Max Size | 10 MB per file |
+| Duration | 3-60 seconds |
 
 <Tip>
-Use consistent image dimensions across your stimulus set for uniform presentation. Square images (e.g., 800x800) work best.
+Use consistent image dimensions across your stimulus set for uniform presentation. 4:3 aspect ratio images display best in the assessment window.
 </Tip>
+
+### Audio Clarity in Conjugate Assessments
+
+During conjugate trials with audio stimuli, EdgeFlow uses a **low-pass filter** instead of visual opacity to create the clarity effect:
+
+- At 100% clarity: Full audio frequency (up to 20,000 Hz)
+- At 0% clarity: Audio filtered to 100 Hz (muffled/bass only)
+- The frequency cutoff scales exponentially for perceptual linearity
+
+This creates an audible degradation effect similar to visual fading for images.
 
 ### Managing Stimuli
 

@@ -10,10 +10,16 @@ EdgeFlow provides flexible export options for individual sessions, participant d
 
 <CardGroup cols={2}>
   <Card title="CSV" icon="file-csv">
-    Comma-separated values for spreadsheet applications (Excel, Google Sheets) and statistical software (R, SPSS).
+    Comma-separated values for spreadsheet applications (Excel, Google Sheets) and statistical software.
   </Card>
   <Card title="JSON" icon="file-code">
     Structured data format for programmatic analysis and database import.
+  </Card>
+  <Card title="HTML" icon="file">
+    Print-friendly report format that can be saved as PDF from your browser.
+  </Card>
+  <Card title="SPSS/R" icon="chart-simple">
+    Statistical analysis format (.sps) with variable labels, chi-square results, and effect sizes.
   </Card>
 </CardGroup>
 
@@ -31,7 +37,7 @@ Export one session's complete data:
     Click the **Export** button.
   </Step>
   <Step title="Configure Options">
-    Select format (CSV/JSON) and data to include.
+    Select format (CSV, JSON, HTML, or SPSS) and data to include.
   </Step>
   <Step title="Download">
     Click **Download** to save the file.
