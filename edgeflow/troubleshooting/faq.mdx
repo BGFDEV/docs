@@ -81,24 +81,21 @@ icon: "circle-question"
 
 <AccordionGroup>
   <Accordion title="What Arduino board should I use?">
-    Arduino Uno R3 is recommended for widest compatibility. Arduino Nano and other compatible boards may work but are not officially tested.
+    Arduino Nano with USB-C is recommended for modern setups. Arduino Uno R3 also works well. Both use the ATmega328P processor and are fully compatible with EdgeFlow firmware.
   </Accordion>
 
   <Accordion title="Where can I get the dynamometer hardware?">
-    Options include:
-    - Build your own using load cell and HX711 amplifier
-    - Commercial grip dynamometers with analog output
-    - Arduino-compatible force sensor kits
+    The recommended setup uses a Vernier IPS121C Hand Dynamometer connected directly to an Arduino analog pin. The IPS121C provides a linear 0-5V output for 0-60 kg force measurement.
 
-    See [Hardware Requirements](/edgeflow/hardware/requirements) for specifications.
+    See [Hardware Requirements](/edgeflow/hardware/requirements) for full specifications.
   </Accordion>
 
   <Accordion title="How often should I calibrate?">
-    Calibrate:
+    The firmware performs automatic zero calibration on startup, ensuring near-zero readings when no force is applied. Manual calibration in EdgeFlow is recommended:
     - Before first use with new hardware
     - Monthly during active use
     - After any component replacement
-    - If readings seem inaccurate
+    - If readings seem inaccurate or drifting
   </Accordion>
 
   <Accordion title="Can I use EdgeFlow without hardware?">

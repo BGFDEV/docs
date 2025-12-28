@@ -13,17 +13,17 @@ Hardware is only required for Conjugate and Full Protocol assessments. VMSWO-onl
 ## Required Components
 
 <CardGroup cols={2}>
-  <Card title="Arduino Board" icon="microchip">
-    Arduino Uno, Nano, or compatible board with USB connectivity
+  <Card title="Arduino Nano" icon="microchip">
+    Arduino Nano with USB-C connectivity
+  </Card>
+  <Card title="Screw Terminal Breakout" icon="screwdriver">
+    Nano expansion board with screw terminals
   </Card>
   <Card title="Force Sensor" icon="hand-fist">
-    Load cell or strain gauge dynamometer for grip force measurement
+    Vernier IPS121C Hand Dynamometer
   </Card>
   <Card title="USB Cable" icon="usb">
-    USB-A to USB-B cable for Arduino connection
-  </Card>
-  <Card title="Grip Handle" icon="grip">
-    Ergonomic grip attachment for participant use
+    USB-C to USB-C cable
   </Card>
 </CardGroup>
 
@@ -31,59 +31,99 @@ Hardware is only required for Conjugate and Full Protocol assessments. VMSWO-onl
 
 ## Recommended Setup
 
-### Arduino Board
+The simplest and most reliable setup uses an Arduino Nano mounted on a screw terminal breakout board. This eliminates soldering and provides secure, tool-free wire connections.
 
-| Specification | Requirement |
+### Components
+
+| Component | Description |
 | --- | --- |
-| Board Type | Arduino Uno R3 (recommended) or compatible |
-| Processor | ATmega328P or equivalent |
-| USB Interface | USB-B or USB-C |
+| Arduino Nano | ATmega328P-based board with USB-C |
+| Screw Terminal Breakout | Expansion shield that exposes all Nano pins via screw terminals |
+| IPS121C Dynamometer | Vernier hand dynamometer with analog output |
+| USB-C Cable | For connecting Nano to computer |
+
+### Why Screw Terminals?
+
+<CardGroup cols={3}>
+  <Card title="No Soldering" icon="ban">
+    Simply insert wires and tighten screws
+  </Card>
+  <Card title="Secure Connections" icon="lock">
+    Screw terminals won't come loose during sessions
+  </Card>
+  <Card title="Easy Adjustments" icon="screwdriver-wrench">
+    Reconfigure wiring without tools beyond a small screwdriver
+  </Card>
+</CardGroup>
+
+### Arduino Nano Specifications
+
+| Specification | Value |
+| --- | --- |
+| Processor | ATmega328P |
+| USB Interface | USB-C |
 | Operating Voltage | 5V |
+| Analog Inputs | A0-A7 |
 
 <Tip>
-Arduino Uno R3 is recommended for widest compatibility. Other boards may work but are not officially tested.
+Look for Arduino Nano kits that include both the Nano board and a matching screw terminal expansion shield. These are widely available and typically cost under $15 for both pieces.
 </Tip>
 
 ### Force Sensor
 
 | Specification | Requirement |
 | --- | --- |
-| Type | Strain gauge load cell or grip dynamometer |
-| Capacity | 50kg minimum recommended |
-| Interface | Analog output or HX711 amplifier |
-| Sampling Rate | Support for 20Hz readings |
+| Recommended | Vernier IPS121C Hand Dynamometer |
+| Capacity | 0-60 kg range |
+| Interface | Analog output (0-5V) |
+| Connection | Direct to Arduino analog pin |
 
-### Pre-Built Options
-
-If you prefer not to build custom hardware:
-
-- Commercial grip dynamometers with analog output
-- Arduino-compatible force sensor kits with HX711 amplifier
-- Research-grade hand dynamometers with serial output
+The IPS121C provides a linear 0-5V output mapping to 0-60 kg, making it ideal for conjugate reinforcement assessments.
 
 <Note>
-Contact your equipment supplier to confirm Arduino compatibility before purchasing.
+Other grip dynamometers with analog output may work but require firmware calibration adjustments.
 </Note>
 
 ---
 
 ## Wiring Overview
 
-The default EdgeFlow firmware is designed for the IPS121C Hand Dynamometer with direct analog connection:
+The EdgeFlow firmware is designed for the IPS121C Hand Dynamometer with direct analog connection:
 
 ```
-Dynamometer → Arduino A0 → USB → Computer
+IPS121C Dynamometer → Screw Terminal Breakout → Arduino Nano → USB → Computer
 ```
 
-### Default Setup (IPS121C Dynamometer)
+### Wiring with Screw Terminal Breakout
 
-| Connection | Arduino Pin |
-| --- | --- |
-| Signal (voltage output) | A0 (Analog) |
-| Power | 5V |
-| Ground | GND |
+Using the screw terminal expansion board, connect the IPS121C dynamometer wires:
 
-The firmware maps the 0-5V analog input to a 0-60kg force range.
+| IPS121C Wire | Screw Terminal | Description |
+| --- | --- | --- |
+| Signal (voltage output) | A7 | Analog input for force readings |
+| Power | 5V | Powers the dynamometer |
+| Ground | GND | Common ground |
+
+<Steps>
+  <Step title="Mount Nano on Breakout">
+    Press the Arduino Nano into the screw terminal breakout board, aligning the pins.
+  </Step>
+  <Step title="Connect Signal Wire">
+    Insert the IPS121C signal wire into the A7 screw terminal and tighten.
+  </Step>
+  <Step title="Connect Power">
+    Insert the power wire into the 5V screw terminal and tighten.
+  </Step>
+  <Step title="Connect Ground">
+    Insert the ground wire into a GND screw terminal and tighten.
+  </Step>
+</Steps>
+
+The firmware maps the 0-5V analog input to a 0-60 kg force range using linear conversion.
+
+<Note>
+The analog pin can be changed in the firmware by modifying `FORCE_SENSOR_PIN`. A7 is recommended for Arduino Nano.
+</Note>
 
 ### Alternative: HX711 Load Cell Setup
 
@@ -97,18 +137,29 @@ If using a load cell with HX711 amplifier, custom firmware modifications are req
 | SCK (Clock) | Digital Pin 3 |
 
 <Warning>
-The default EdgeFlow firmware expects direct analog input on A0. Load cell setups with HX711 require firmware modifications.
+The default EdgeFlow firmware expects direct analog input. Load cell setups with HX711 require firmware modifications.
 </Warning>
 
 ---
 
 ## Arduino Firmware
 
-EdgeFlow communicates with Arduino via serial protocol. The Arduino must run compatible firmware that:
+EdgeFlow communicates with Arduino via serial protocol. The Arduino runs firmware that:
 
-1. Reads force sensor at 20Hz
-2. Outputs force values in kg via serial
-3. Responds to calibration commands
+1. Reads force sensor at 20 Hz (every 50ms)
+2. Outputs force values in `FORCE:XX.XXX` format via serial at 9600 baud
+3. Performs automatic zero calibration on startup
+4. Applies noise reduction filtering
+
+### Firmware Features
+
+| Feature | Description |
+| --- | --- |
+| Auto Zero Calibration | Calibrates zero offset automatically at startup |
+| Moving Average Filter | 10-sample filter for smooth, stable readings |
+| ADC Oversampling | 4x oversampling for improved resolution |
+| Deadband | 0.02 kg threshold eliminates noise near zero |
+| Linear Mapping | 0-5V input maps to 0-60 kg output |
 
 ### Installing Firmware
 
@@ -119,8 +170,11 @@ EdgeFlow communicates with Arduino via serial protocol. The Arduino must run com
   <Step title="Open Arduino IDE">
     Launch Arduino IDE and open the downloaded `.ino` file.
   </Step>
+  <Step title="Configure Pin (if needed)">
+    Verify the `FORCE_SENSOR_PIN` constant matches your wiring (A7 for Nano, A0 for Uno).
+  </Step>
   <Step title="Select Board">
-    Go to **Tools** > **Board** and select your Arduino model.
+    Go to **Tools** > **Board** and select **Arduino Nano** or **Arduino Uno**.
   </Step>
   <Step title="Select Port">
     Go to **Tools** > **Port** and select your Arduino's serial port.

@@ -52,9 +52,11 @@ Navigation is defined in `docs.json` under `navigation.tabs`. The EdgeFlow tab c
 ## EdgeFlow Context
 
 EdgeFlow is a Tauri v2 desktop app (React + Rust) for behavioral research:
-- **VMSWO**: Verbal multiple stimulus without replacement preference assessment
-- **Conjugate Reinforcement**: Force-based behavioral engagement via Arduino dynamometer
+- **VMSWO**: Verbal multiple stimulus without replacement preference assessment (uses "selections" not "trials")
+- **Conjugate Reinforcement**: Force-based behavioral engagement via Arduino Nano + IPS121C dynamometer
 - **Correspondence Analysis**: Comparing verbal and behavioral preference measures
+
+Hardware: Arduino Nano (USB-C) with Vernier IPS121C dynamometer on pin A7, 9600 baud, 20Hz sampling.
 
 Reference: Sheridan et al. 2024 methodology
 
