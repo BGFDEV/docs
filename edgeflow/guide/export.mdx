@@ -1,0 +1,243 @@
+---
+title: "Data Export"
+description: "Export session data for external analysis and reporting"
+icon: "file-export"
+---
+
+EdgeFlow provides flexible export options for individual sessions, participant data, and batch exports.
+
+## Export Formats
+
+<CardGroup cols={2}>
+  <Card title="CSV" icon="file-csv">
+    Comma-separated values for spreadsheet applications (Excel, Google Sheets) and statistical software (R, SPSS).
+  </Card>
+  <Card title="JSON" icon="file-code">
+    Structured data format for programmatic analysis and database import.
+  </Card>
+</CardGroup>
+
+---
+
+## Single Session Export
+
+Export one session's complete data:
+
+<Steps>
+  <Step title="Open Session">
+    Navigate to the session results page.
+  </Step>
+  <Step title="Click Export">
+    Click the **Export** button.
+  </Step>
+  <Step title="Configure Options">
+    Select format (CSV/JSON) and data to include.
+  </Step>
+  <Step title="Download">
+    Click **Download** to save the file.
+  </Step>
+</Steps>
+
+### Export Options
+
+| Option | Description |
+| --- | --- |
+| Include raw force data | Exports 20Hz force samples (increases file size) |
+| Include block-level data | Exports individual block rankings |
+| Include timestamps | Adds timestamp to each data point |
+| Decimal precision | Number of decimal places (2-4) |
+
+---
+
+## Participant Export
+
+Export all sessions for a single participant:
+
+<Steps>
+  <Step title="Open Participant">
+    Navigate to the participant's detail page.
+  </Step>
+  <Step title="Click Export">
+    Click **Export All Sessions**.
+  </Step>
+  <Step title="Configure">
+    Select format and options.
+  </Step>
+  <Step title="Download">
+    File downloads containing all session data.
+  </Step>
+</Steps>
+
+---
+
+## Batch Export
+
+Export data across multiple participants and sessions:
+
+<Steps>
+  <Step title="Open Analysis">
+    Navigate to the **Analysis** page.
+  </Step>
+  <Step title="Apply Filters">
+    Filter by date range, participant, assessment type, or correspondence result.
+  </Step>
+  <Step title="Click Batch Export">
+    Click the **Export** button in the toolbar.
+  </Step>
+  <Step title="Select Sessions">
+    Choose which filtered sessions to include (or select all).
+  </Step>
+  <Step title="Configure and Download">
+    Set export options and download.
+  </Step>
+</Steps>
+
+---
+
+## Export Data Structure
+
+### CSV Format
+
+#### Session Summary CSV
+
+```csv
+participant_id,session_date,assessment_type,status,correspondence
+P001,2024-03-15T10:30:00,full_protocol,completed,hp_lp
+P001,2024-03-16T14:00:00,vmswo_only,completed,n/a
+```
+
+#### VMSWO Rankings CSV
+
+```csv
+session_id,stimulus_name,rank,total_score,block_1_rank,block_2_rank,block_3_rank
+sess_001,Stimulus A,1,14,1,1,2
+sess_001,Stimulus B,2,12,2,2,1
+```
+
+#### Force Data CSV
+
+```csv
+session_id,stimulus_name,trial_number,mean_force,peak_force,force_rank
+sess_001,Stimulus A,1,2.45,4.12,1
+sess_001,Stimulus B,1,1.82,3.55,2
+```
+
+#### Raw Force Samples CSV (if included)
+
+```csv
+session_id,stimulus_name,trial_number,timestamp_ms,force_kg,clarity_pct
+sess_001,Stimulus A,1,0,0.12,100
+sess_001,Stimulus A,1,50,0.45,98
+sess_001,Stimulus A,1,100,1.23,96
+```
+
+### JSON Format
+
+```json
+{
+  "session": {
+    "id": "sess_001",
+    "participant_id": "P001",
+    "date": "2024-03-15T10:30:00Z",
+    "assessment_type": "full_protocol",
+    "status": "completed"
+  },
+  "vmswo": {
+    "rankings": [
+      {
+        "stimulus": "Stimulus A",
+        "rank": 1,
+        "total_score": 14,
+        "block_ranks": [1, 1, 2]
+      }
+    ]
+  },
+  "conjugate": {
+    "trials": [
+      {
+        "stimulus": "Stimulus A",
+        "trial_number": 1,
+        "mean_force": 2.45,
+        "peak_force": 4.12,
+        "samples": [...]
+      }
+    ]
+  },
+  "correspondence": {
+    "classification": "hp_lp",
+    "chi_square": 12.45,
+    "p_value": 0.002
+  }
+}
+```
+
+---
+
+## Export Settings
+
+Configure default export behavior in **Settings** > **Data Management**:
+
+| Setting | Options | Description |
+| --- | --- | --- |
+| Default format | CSV / JSON | Pre-selected format in export dialogs |
+| Decimal precision | 2-4 | Decimal places for numeric values |
+| Date format | ISO / US / EU | Timestamp formatting |
+| Include raw data | Yes / No | Default for raw force samples |
+
+---
+
+## Importing to Other Tools
+
+### Microsoft Excel / Google Sheets
+
+1. Open the CSV file directly, or
+2. Use **Data** > **Import** for more control over delimiters and formatting
+
+### R / RStudio
+
+```r
+# Read session summary
+sessions <- read.csv("sessions_export.csv")
+
+# Read force data
+force_data <- read.csv("force_export.csv")
+```
+
+### Python / pandas
+
+```python
+import pandas as pd
+
+# Read session data
+sessions = pd.read_csv("sessions_export.csv")
+
+# Read JSON export
+import json
+with open("session_export.json") as f:
+    data = json.load(f)
+```
+
+### SPSS
+
+1. **File** > **Open** > **Data**
+2. Select CSV file
+3. Use the Text Import Wizard to configure columns
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Export regularly during data collection">
+    Don't wait until the study ends. Regular exports provide backup and allow preliminary analysis.
+  </Accordion>
+  <Accordion title="Use consistent export settings">
+    Document your export configuration for reproducibility. Use the same date format and precision throughout a study.
+  </Accordion>
+  <Accordion title="Verify exports before analysis">
+    Spot-check exported data against the EdgeFlow interface to ensure accuracy.
+  </Accordion>
+  <Accordion title="Store exports securely">
+    Exported files contain participant data. Store them according to your data security protocol.
+  </Accordion>
+</AccordionGroup>

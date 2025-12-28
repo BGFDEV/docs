@@ -1,0 +1,206 @@
+---
+title: "Running Assessments"
+description: "Conduct VMSWO and conjugate assessments with participants"
+icon: "play"
+---
+
+Once a session is launched, EdgeFlow guides you through the assessment procedure. This page covers what happens during each phase.
+
+## The Two Windows
+
+During an active session, EdgeFlow uses two windows:
+
+| Window | Purpose | Audience |
+| --- | --- | --- |
+| **Participant Window** | Assessment display and interaction | Participant |
+| **Researcher Monitor** | Real-time feedback and controls | Researcher |
+
+<Tip>
+For best results, use a second monitor for the participant window. Position yourself where you can observe both screens.
+</Tip>
+
+---
+
+## VMSWO Assessment
+
+### Participant View
+
+The participant sees:
+
+1. **Instructions Screen**: Task explanation (configurable duration)
+2. **Stimulus Array**: All 5 stimuli displayed
+3. **Selection Prompt**: "Which one do you want most?"
+4. **Block Transitions**: Brief screen between blocks
+
+### Researcher Actions
+
+During VMSWO, the researcher:
+
+1. **Reads the prompt** to the participant (if verbal protocol)
+2. **Records selection** when participant responds
+3. **Observes behavior** and notes any issues
+
+### Recording Selections
+
+When the participant indicates a preference:
+
+<Steps>
+  <Step title="Participant Responds">
+    The participant points, names, or otherwise indicates their choice.
+  </Step>
+  <Step title="Click Selection">
+    Click the corresponding stimulus in the participant window or use keyboard shortcuts.
+  </Step>
+  <Step title="Confirm">
+    The stimulus is removed and remaining stimuli are re-presented.
+  </Step>
+</Steps>
+
+### Keyboard Shortcuts (VMSWO)
+
+| Key | Action |
+| --- | --- |
+| 1-5 | Select stimulus in position 1-5 |
+| Space | Advance instructions screen |
+| Esc | Open end session dialog |
+
+---
+
+## Conjugate Assessment
+
+### Participant View
+
+The participant sees:
+
+1. **Instructions Screen**: Task explanation
+2. **Stimulus Display**: Single stimulus at configurable clarity
+3. **Force Feedback**: Visual feedback as they grip (clarity changes)
+4. **ITI Screen**: Rest period between trials
+
+### The Force-Clarity Loop
+
+During each trial:
+
+1. Stimulus appears at 100% clarity
+2. Clarity fades over time (configurable rate)
+3. Participant gripping the dynamometer restores clarity
+4. Higher force = more clarity restoration
+5. Trial ends after configured duration
+
+### Researcher Monitor
+
+The researcher monitor shows:
+
+| Panel | Information |
+| --- | --- |
+| Current Trial | Stimulus being presented, elapsed time |
+| Force Reading | Real-time grip force (kg) |
+| Force Graph | Live force over time for current trial |
+| Clarity Level | Current stimulus clarity percentage |
+| Trial Progress | How many trials completed / remaining |
+
+### Researcher Actions
+
+During conjugate, the researcher:
+
+1. **Monitors hardware** to ensure force readings are capturing
+2. **Observes participant** for fatigue or confusion
+3. **Notes issues** in real-time if needed
+
+<Note>
+Conjugate trials run automatically. The researcher primarily observes rather than interacts.
+</Note>
+
+---
+
+## Full Protocol Transitions
+
+When running Full Protocol:
+
+<Steps>
+  <Step title="VMSWO Completes">
+    After 3 VMSWO blocks, a transition screen appears.
+  </Step>
+  <Step title="Conjugate Instructions">
+    Instructions for the conjugate phase are displayed.
+  </Step>
+  <Step title="Conjugate Begins">
+    Trials run through all stimuli based on configured order.
+  </Step>
+  <Step title="Session Ends">
+    Completion screen displays, data is saved.
+  </Step>
+</Steps>
+
+---
+
+## Inter-Trial Intervals (ITI)
+
+Between conjugate trials, an ITI provides rest:
+
+| Setting | Effect |
+| --- | --- |
+| Duration | 2-10 seconds (configurable) |
+| Display | Blank screen or countdown (configurable) |
+| Manual Skip | Optionally allow researcher to skip ITI |
+
+### Configuring ITI
+
+Default ITI is 3 seconds. Adjust in **Settings** > **Assessment** or per-session before launch.
+
+---
+
+## Common Scenarios
+
+<AccordionGroup>
+  <Accordion title="Participant doesn't understand instructions">
+    Use the instructions screen time to demonstrate. You can re-read instructions verbally. If persistent confusion, consider practice trials (create a test session first).
+  </Accordion>
+  <Accordion title="Participant changes their mind during VMSWO">
+    If they haven't clicked yet, let them reconsider. If already selected, note it but continue—the procedure doesn't allow take-backs.
+  </Accordion>
+  <Accordion title="Force readings are erratic">
+    Check dynamometer grip and cable connection. If readings spike or drop unexpectedly, the session may need to restart after troubleshooting.
+  </Accordion>
+  <Accordion title="Participant shows signs of fatigue">
+    Note the observation. Consider shorter trial durations in future sessions. If severe, you may end the session early (partial data is saved).
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Ending a Session
+
+### Normal Completion
+
+When all phases complete:
+
+1. Completion screen displays summary
+2. Data saves automatically
+3. Session marked as "Completed"
+4. Participant window closes
+
+### Early Termination
+
+To end a session early:
+
+1. Press `Esc` or click **End Session**
+2. Confirm in the dialog
+3. Partial data saves with "Incomplete" status
+
+<Warning>
+Incomplete sessions have limited analysis options. Correspondence analysis requires all phases to complete.
+</Warning>
+
+---
+
+## After the Session
+
+<CardGroup cols={2}>
+  <Card title="View Results" icon="chart-bar" href="/edgeflow/guide/results">
+    Review rankings, force data, and correspondence
+  </Card>
+  <Card title="Export Data" icon="file-export" href="/edgeflow/guide/export">
+    Export session data for external analysis
+  </Card>
+</CardGroup>

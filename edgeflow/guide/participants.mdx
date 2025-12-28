@@ -1,0 +1,174 @@
+---
+title: "Managing Participants"
+description: "Add, edit, and organize participant records in EdgeFlow"
+icon: "users"
+---
+
+EdgeFlow stores participant information securely in an encrypted database. This guide covers participant management workflows.
+
+## Participant Records
+
+Each participant record includes:
+
+| Field | Required | Description |
+| --- | --- | --- |
+| Identifier | Yes | Unique ID for the participant (e.g., "P001", "Participant A") |
+| Notes | No | Free-text field for additional information |
+| Created Date | Auto | Timestamp when record was created |
+| Session Count | Auto | Number of completed sessions |
+
+<Note>
+Use anonymized identifiers rather than real names to protect participant privacy. Store identifying information separately according to your IRB protocol.
+</Note>
+
+---
+
+## Adding Participants
+
+<Steps>
+  <Step title="Navigate to Participants">
+    Click **Participants** in the sidebar navigation.
+  </Step>
+  <Step title="Click Add Participant">
+    Click the **Add Participant** button.
+  </Step>
+  <Step title="Enter Identifier">
+    Enter a unique participant identifier. This cannot be changed later.
+  </Step>
+  <Step title="Add Notes (Optional)">
+    Enter any relevant notes about the participant.
+  </Step>
+  <Step title="Save">
+    Click **Save** to create the participant record.
+  </Step>
+</Steps>
+
+<Warning>
+Participant identifiers must be unique. EdgeFlow will prevent duplicate identifiers.
+</Warning>
+
+---
+
+## Viewing Participants
+
+The Participants page displays all participants in a searchable table:
+
+### Table Columns
+
+| Column | Description |
+| --- | --- |
+| Identifier | Participant's unique ID |
+| Sessions | Total completed sessions |
+| Last Session | Date of most recent session |
+| Actions | View, edit, or delete options |
+
+### Searching and Filtering
+
+- **Search**: Type in the search box to filter by identifier
+- **Sort**: Click column headers to sort ascending/descending
+
+---
+
+## Participant Details
+
+Click a participant row to view their detail page:
+
+### Overview Tab
+
+- Participant identifier and creation date
+- Total sessions completed
+- Notes field (editable)
+
+### Sessions Tab
+
+- List of all sessions for this participant
+- Session date, type, and status
+- Click any session to view full results
+
+### Performance Tab
+
+- Preference patterns across sessions
+- Force data trends (if conjugate sessions exist)
+- Visual charts showing progression
+
+---
+
+## Editing Participants
+
+<Steps>
+  <Step title="Open Participant Details">
+    Click the participant row to open their detail page.
+  </Step>
+  <Step title="Edit Notes">
+    The notes field is directly editable. Changes save automatically.
+  </Step>
+</Steps>
+
+<Note>
+Participant identifiers cannot be changed after creation to maintain data integrity across sessions.
+</Note>
+
+---
+
+## Deleting Participants
+
+<Warning>
+Deleting a participant permanently removes all associated session data. This action cannot be undone.
+</Warning>
+
+<Steps>
+  <Step title="Open Participant Details">
+    Navigate to the participant's detail page.
+  </Step>
+  <Step title="Click Delete">
+    Click the **Delete** button (trash icon).
+  </Step>
+  <Step title="Confirm Deletion">
+    Review the confirmation dialog showing how many sessions will be deleted.
+  </Step>
+  <Step title="Type Identifier to Confirm">
+    Enter the participant identifier to confirm permanent deletion.
+  </Step>
+</Steps>
+
+---
+
+## Exporting Participant Data
+
+Export a single participant's data:
+
+<Steps>
+  <Step title="Open Participant Details">
+    Navigate to the participant's detail page.
+  </Step>
+  <Step title="Click Export">
+    Click the **Export** button.
+  </Step>
+  <Step title="Select Format">
+    Choose CSV or JSON format.
+  </Step>
+  <Step title="Download">
+    The export file downloads containing all sessions and results for this participant.
+  </Step>
+</Steps>
+
+For bulk export across multiple participants, see [Data Export](/edgeflow/guide/export).
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Use consistent identifier formats">
+    Establish a naming convention before data collection (e.g., "P001", "P002" or "Cohort1-01", "Cohort1-02"). This makes sorting and filtering easier.
+  </Accordion>
+  <Accordion title="Add notes during or after sessions">
+    Use the notes field to record relevant observations: environmental factors, participant state, procedural deviations.
+  </Accordion>
+  <Accordion title="Review before deleting">
+    Always export participant data before deletion if there's any chance you may need it later.
+  </Accordion>
+  <Accordion title="Regular backups">
+    Configure automatic backups in Settings to protect participant data. See [Data Management](/edgeflow/settings/data).
+  </Accordion>
+</AccordionGroup>

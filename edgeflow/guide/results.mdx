@@ -1,0 +1,216 @@
+---
+title: "Viewing Results"
+description: "Review session data, rankings, force metrics, and correspondence analysis"
+icon: "chart-bar"
+---
+
+After completing a session, EdgeFlow provides comprehensive results visualization and analysis tools.
+
+## Accessing Results
+
+<Steps>
+  <Step title="Navigate to Sessions">
+    Click **Sessions** in the sidebar.
+  </Step>
+  <Step title="Find Your Session">
+    Use search or filters to locate the session. Recent sessions appear at the top.
+  </Step>
+  <Step title="Click to Open">
+    Click the session row to view full results.
+  </Step>
+</Steps>
+
+---
+
+## Session Overview
+
+The results page header shows:
+
+| Field | Description |
+| --- | --- |
+| Participant | Who completed the session |
+| Date/Time | When the session occurred |
+| Assessment Type | VMSWO, Conjugate, or Full Protocol |
+| Status | Completed or Incomplete |
+| Duration | Total session time |
+
+---
+
+## VMSWO Results
+
+### Rankings Table
+
+The primary output showing preference hierarchy:
+
+| Column | Description |
+| --- | --- |
+| Rank | Final preference rank (1 = most preferred) |
+| Stimulus | Stimulus name/thumbnail |
+| Total Score | Aggregate selection score |
+| Block 1/2/3 | Rank within each block |
+| Selection Count | Times selected first |
+
+### Interpreting Rankings
+
+<CardGroup cols={2}>
+  <Card title="High-Preference (HP)" icon="arrow-up">
+    Ranks 1-2: Consistently selected early across blocks
+  </Card>
+  <Card title="Low-Preference (LP)" icon="arrow-down">
+    Ranks 4-5: Consistently selected late across blocks
+  </Card>
+</CardGroup>
+
+### Block-Level Detail
+
+Click **Show Block Details** to expand:
+
+- Individual selection order for each block
+- Visual representation of selection patterns
+- Detection of position bias or inconsistency
+
+---
+
+## Conjugate Results
+
+### Force Metrics Table
+
+| Column | Description |
+| --- | --- |
+| Stimulus | Stimulus name/thumbnail |
+| Mean Force | Average grip force across trial (kg) |
+| Peak Force | Maximum grip force recorded (kg) |
+| Force Rank | Rank by mean force (1 = highest) |
+| Trial Duration | Actual trial length |
+
+### Force-Time Visualization
+
+Each stimulus shows a force graph:
+
+- X-axis: Time (seconds)
+- Y-axis: Force (kg)
+- Interactive: Hover for exact values
+- Overlay: Clarity level throughout trial
+
+### Aggregate Patterns
+
+The aggregate view shows:
+
+- Force distribution by stimulus (box plots)
+- Comparison across stimuli
+- Force trends across trials
+
+---
+
+## Correspondence Analysis
+
+<Note>
+Correspondence analysis is only available for completed Full Protocol sessions.
+</Note>
+
+### Correspondence Classification
+
+EdgeFlow automatically classifies the session:
+
+| Classification | Meaning |
+| --- | --- |
+| HP/LP Correspondence | High force for HP stimuli, low force for LP stimuli |
+| HP-Only | High force for HP only, LP force undifferentiated |
+| LP-Only | Low force for LP only, HP force undifferentiated |
+| Decreasing Trend | Force decreases across presentations |
+| Undifferentiated | No clear pattern between preference and force |
+
+### Visualization
+
+The correspondence panel includes:
+
+- **Rank Comparison**: VMSWO rank vs Force rank for each stimulus
+- **Heatmap**: Visual matrix of force by stimulus and trial
+- **Scatter Plot**: Preference rank vs mean force
+
+### Statistical Output
+
+Click **Chi-Square Analysis** for formal statistics:
+
+| Output | Description |
+| --- | --- |
+| Chi-square statistic | Measure of correspondence strength |
+| Degrees of freedom | Based on stimulus count |
+| p-value | Statistical significance |
+| Interpretation | Plain-language explanation |
+
+---
+
+## Using the Analysis Tools
+
+### Filtering and Comparison
+
+From the Sessions list, you can:
+
+- Filter by participant, date range, assessment type
+- Compare multiple sessions side-by-side
+- View aggregate statistics across sessions
+
+### Quick Actions
+
+| Button | Action |
+| --- | --- |
+| Export | Download session data (CSV/JSON) |
+| Print | Generate printable report |
+| Compare | Add session to comparison view |
+| Notes | Add researcher notes to session |
+
+---
+
+## Session Notes
+
+Add notes to document observations:
+
+<Steps>
+  <Step title="Open Session">
+    Navigate to the session results page.
+  </Step>
+  <Step title="Click Notes">
+    Click the **Notes** tab or button.
+  </Step>
+  <Step title="Enter Notes">
+    Type observations, environmental factors, or other relevant information.
+  </Step>
+  <Step title="Save">
+    Notes save automatically.
+  </Step>
+</Steps>
+
+Notes are included in data exports and visible in the participant's session history.
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Review results immediately after session">
+    Check for data quality issues while the session is fresh. Note any anomalies in force readings or unexpected ranking patterns.
+  </Accordion>
+  <Accordion title="Compare with previous sessions">
+    For repeated assessments, compare rankings and force patterns across sessions to evaluate preference stability.
+  </Accordion>
+  <Accordion title="Document correspondence classification">
+    Record the correspondence result and your interpretation. This informs reinforcer selection decisions.
+  </Accordion>
+  <Accordion title="Export before deleting">
+    Always export session data before any deletions. See [Data Export](/edgeflow/guide/export).
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Data Export" icon="file-export" href="/edgeflow/guide/export">
+    Export results for external analysis
+  </Card>
+  <Card title="Analysis Page" icon="chart-line" href="/edgeflow/guide/results">
+    Aggregate analysis across sessions
+  </Card>
+</CardGroup>

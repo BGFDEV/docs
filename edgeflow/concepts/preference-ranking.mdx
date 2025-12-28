@@ -1,0 +1,155 @@
+---
+title: "Preference Ranking"
+description: "How EdgeFlow calculates and interprets preference rankings from VMSWO data"
+icon: "ranking-star"
+---
+
+Preference ranking is the primary output of VMSWO assessments. This guide explains how rankings are calculated and how to interpret them.
+
+## How Rankings Are Calculated
+
+EdgeFlow calculates preference rankings by aggregating selection data across all 3 blocks of a VMSWO assessment.
+
+### Selection Scoring
+
+Each time a stimulus is selected, it receives a score based on when it was chosen:
+
+| Selection Order | Score |
+| --- | --- |
+| 1st (from 5 stimuli) | 5 points |
+| 2nd (from 4 stimuli) | 4 points |
+| 3rd (from 3 stimuli) | 3 points |
+| 4th (from 2 stimuli) | 2 points |
+| 5th (last remaining) | 1 point |
+
+### Aggregation
+
+Scores are summed across all 3 blocks:
+
+- **Maximum possible**: 15 points (selected 1st in all 3 blocks)
+- **Minimum possible**: 3 points (selected last in all 3 blocks)
+
+Stimuli are then ranked by total score, with the highest score receiving Rank 1.
+
+### Handling Ties
+
+When stimuli have equal scores:
+
+1. EdgeFlow uses first-selection frequency as a tiebreaker
+2. If still tied, the order from the most recent block determines rank
+3. Ties are noted in the session results
+
+---
+
+## Understanding the Ranking
+
+### High-Preference vs Low-Preference
+
+Stimuli are typically classified based on their rank:
+
+| Rank | Classification | Interpretation |
+| --- | --- | --- |
+| 1-2 | High-Preference (HP) | Consistently selected early; likely reinforcing |
+| 3 | Moderate | Variable selection; unclear preference |
+| 4-5 | Low-Preference (LP) | Consistently selected late; likely less reinforcing |
+
+<Tip>
+The HP/LP classification is used in correspondence analysis to evaluate whether behavioral engagement matches stated preferences.
+</Tip>
+
+### Block-Level Analysis
+
+EdgeFlow also shows individual block rankings:
+
+| Block | Stimulus A | Stimulus B | Stimulus C | Stimulus D | Stimulus E |
+| --- | --- | --- | --- | --- | --- |
+| Block 1 | 1st | 3rd | 2nd | 5th | 4th |
+| Block 2 | 2nd | 1st | 3rd | 4th | 5th |
+| Block 3 | 1st | 2nd | 4th | 5th | 3rd |
+| **Overall** | **1** | **2** | **3** | **5** | **4** |
+
+This breakdown helps identify:
+- **Consistent preferences**: Same stimulus ranked highly across all blocks
+- **Variable preferences**: Rank changes significantly between blocks
+- **Position effects**: A stimulus always selected first regardless of array position (may indicate bias)
+
+---
+
+## Counterbalancing and Order Effects
+
+### Why Counterbalancing Matters
+
+Without counterbalancing, position bias can contaminate results. A participant who always selects the leftmost stimulus would artificially inflate the preference score of whichever stimulus appears first.
+
+### How EdgeFlow Counterbalances
+
+EdgeFlow uses **circular rotation** across blocks:
+
+```
+Block 1: [A, B, C, D, E]
+Block 2: [B, C, D, E, A]
+Block 3: [C, D, E, A, B]
+```
+
+Each stimulus occupies:
+- The first position in one block
+- The last position in one block
+- Middle positions in one block
+
+### Detecting Position Bias
+
+If a participant consistently selects the first stimulus regardless of content:
+
+- All stimuli would receive similar scores (5, 4, 3 depending on rotation)
+- No clear preference pattern would emerge
+- EdgeFlow highlights this pattern in results
+
+---
+
+## Interpreting Results
+
+### Strong Preference Patterns
+
+<Check>
+A strong preference pattern shows one or two stimuli consistently ranked 1st or 2nd across all blocks, with clear separation from lower-ranked stimuli.
+</Check>
+
+Example:
+- Stimulus A: Rank 1 (score 15/15)
+- Stimulus B: Rank 2 (score 12/15)
+- Stimulus C: Rank 3 (score 7/15)
+- Stimulus D: Rank 4 (score 5/15)
+- Stimulus E: Rank 5 (score 3/15)
+
+### Weak or Unclear Patterns
+
+<Warning>
+When scores cluster together (e.g., all between 8-10), preferences may not be well-differentiated. Consider:
+- Using different stimuli
+- Re-running the assessment on a different day
+- Evaluating if the participant understands the task
+</Warning>
+
+### No Preference
+
+If all stimuli receive similar scores across blocks, the participant may:
+- Have no strong preference among the options
+- Not understand the task
+- Be selecting randomly
+
+---
+
+## Using Rankings
+
+Preference rankings inform:
+
+| Use Case | Application |
+| --- | --- |
+| Intervention planning | Use HP stimuli as reinforcers, avoid LP stimuli |
+| Research analysis | Compare rankings across participants or conditions |
+| Correspondence evaluation | Compare to conjugate force data to validate preferences |
+| Stimulus selection | Remove LP stimuli, replace with alternatives |
+
+<Note>
+VMSWO rankings reflect verbal/stated preferences. Correspondence analysis with conjugate data reveals whether these preferences match behavioral engagement.
+</Note>

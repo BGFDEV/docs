@@ -1,0 +1,141 @@
+---
+title: "Quick Start"
+description: "Run your first preference assessment in EdgeFlow"
+icon: "rocket"
+---
+
+This guide walks you through running your first VMSWO preference assessment in EdgeFlow. By the end, you'll have a participant with completed assessment data.
+
+<Info>
+This quick start covers VMSWO-only assessment. For conjugate reinforcement assessments, you'll need Arduino hardware configured first. See [Hardware Setup](/edgeflow/hardware/requirements).
+</Info>
+
+## Prerequisites
+
+Before starting:
+- EdgeFlow is installed and database is initialized
+- You have 5 stimulus images ready (JPG or PNG files)
+
+## Step 1: Add Stimuli
+
+First, upload your stimulus images to the library:
+
+<Steps>
+  <Step title="Open Stimulus Library">
+    Navigate to **Settings** > **Stimulus Library** from the sidebar.
+  </Step>
+  <Step title="Upload Images">
+    Click **Add Stimuli** and select your 5 image files. Each image will be added to your library.
+  </Step>
+  <Step title="Create a Stimulus Set">
+    Click **Create Set**, name it (e.g., "Assessment Set 1"), and select exactly 5 stimuli from your library.
+  </Step>
+</Steps>
+
+<Note>
+Stimulus sets must contain exactly 5 items. This is required by the VMSWO methodology for proper counterbalancing.
+</Note>
+
+## Step 2: Create a Participant
+
+<Steps>
+  <Step title="Open Participants">
+    Navigate to **Participants** from the sidebar.
+  </Step>
+  <Step title="Add New Participant">
+    Click **Add Participant** and enter an identifier (e.g., "Participant 001"). You can optionally add notes.
+  </Step>
+</Steps>
+
+## Step 3: Start a Session
+
+<Steps>
+  <Step title="Begin Session Setup">
+    From the home screen, click **New Session** or navigate to the participant and click **Start Session**.
+  </Step>
+  <Step title="Select Participant">
+    Choose your participant from the dropdown.
+  </Step>
+  <Step title="Choose Assessment Type">
+    Select **VMSWO Only** for this quick start.
+  </Step>
+  <Step title="Select Stimulus Type">
+    Choose **Image** (or Audio if you uploaded audio files).
+  </Step>
+  <Step title="Select Stimulus Set">
+    Choose the stimulus set you created in Step 1.
+  </Step>
+  <Step title="Complete Equipment Checklist">
+    Verify the checklist items and proceed.
+  </Step>
+  <Step title="Launch Assessment">
+    Click **Start Session** to open the participant assessment window.
+  </Step>
+</Steps>
+
+## Step 4: Run the Assessment
+
+The assessment opens in a separate window for the participant:
+
+<Steps>
+  <Step title="Instructions Screen">
+    The participant sees task instructions. Click to proceed when ready.
+  </Step>
+  <Step title="Block 1">
+    All 5 stimuli are presented. The participant indicates their most preferred. The selected stimulus is removed, and the remaining 4 are presented. This continues until all stimuli are ranked for the block.
+  </Step>
+  <Step title="Blocks 2 and 3">
+    The process repeats with counterbalanced stimulus ordering to control for sequence effects.
+  </Step>
+  <Step title="Completion">
+    After 3 blocks, the session ends and results are saved automatically.
+  </Step>
+</Steps>
+
+## Step 5: View Results
+
+After the assessment:
+
+<Steps>
+  <Step title="Open Sessions">
+    Navigate to **Sessions** from the sidebar.
+  </Step>
+  <Step title="Find Your Session">
+    Locate the completed session in the list.
+  </Step>
+  <Step title="View Rankings">
+    Click the session to see preference rankings, showing which stimuli were selected most and least frequently.
+  </Step>
+</Steps>
+
+## Understanding Results
+
+The VMSWO results show:
+
+| Column | Description |
+| --- | --- |
+| Stimulus | The stimulus image/name |
+| Rank | Overall preference rank (1 = most preferred) |
+| Selection Count | How many times this stimulus was selected first |
+| Block Rankings | Individual rank within each of the 3 blocks |
+
+<Tip>
+Stimuli ranked 1-2 are typically considered **high-preference (HP)**, while ranks 4-5 are **low-preference (LP)**. This classification is used in correspondence analysis.
+</Tip>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Core Concepts" icon="book" href="/edgeflow/concepts/assessments">
+    Learn about VMSWO and conjugate methodology
+  </Card>
+  <Card title="Hardware Setup" icon="microchip" href="/edgeflow/hardware/requirements">
+    Add Arduino dynamometer for conjugate assessments
+  </Card>
+  <Card title="Data Export" icon="file-export" href="/edgeflow/guide/export">
+    Export your assessment data
+  </Card>
+  <Card title="Analysis" icon="chart-line" href="/edgeflow/guide/results">
+    Explore analysis features
+  </Card>
+</CardGroup>

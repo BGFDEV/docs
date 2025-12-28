@@ -1,0 +1,152 @@
+---
+title: "Stimuli & Stimulus Sets"
+description: "Managing images, audio files, and stimulus sets for assessments"
+icon: "images"
+---
+
+Stimuli are the core materials used in EdgeFlow assessments. This guide covers how to organize and manage your stimulus library.
+
+## Stimulus Types
+
+EdgeFlow supports two stimulus types:
+
+<CardGroup cols={2}>
+  <Card title="Image Stimuli" icon="image">
+    JPG, PNG, GIF, or WebP image files displayed during assessment.
+  </Card>
+  <Card title="Audio Stimuli" icon="volume-high">
+    MP3, WAV, or M4A audio files played during assessment.
+  </Card>
+</CardGroup>
+
+<Warning>
+A session can only use one stimulus type. You cannot mix images and audio in the same assessment.
+</Warning>
+
+## Stimulus Library
+
+The stimulus library is your central repository for all stimulus files.
+
+### Adding Stimuli
+
+<Steps>
+  <Step title="Navigate to Library">
+    Go to **Settings** > **Stimulus Library**.
+  </Step>
+  <Step title="Click Add Stimuli">
+    Click the **Add Stimuli** button.
+  </Step>
+  <Step title="Select Files">
+    Choose one or more files from your computer. For bulk upload, select multiple files at once.
+  </Step>
+  <Step title="Confirm Upload">
+    Files are processed and added to your library with auto-generated thumbnails for images.
+  </Step>
+</Steps>
+
+### File Recommendations
+
+| Stimulus Type | Recommended Format | Max Size |
+| --- | --- | --- |
+| Images | PNG or JPG | 5 MB per file |
+| Audio | MP3 | 10 MB per file |
+
+<Tip>
+Use consistent image dimensions across your stimulus set for uniform presentation. Square images (e.g., 800x800) work best.
+</Tip>
+
+### Managing Stimuli
+
+From the library, you can:
+
+- **Preview** stimuli by clicking the thumbnail
+- **Rename** stimuli for easier identification
+- **Delete** unused stimuli (only if not used in any stimulus set)
+- **View usage** to see which sets include each stimulus
+
+---
+
+## Stimulus Sets
+
+A stimulus set is a group of exactly 5 stimuli used together in an assessment.
+
+### Why 5 Stimuli?
+
+The VMSWO methodology requires exactly 5 stimuli per set to enable proper counterbalancing across 3 blocks. This fixed number ensures:
+
+- Each stimulus can occupy each position
+- Statistical validity of preference rankings
+- Consistent assessment duration
+
+### Creating a Set
+
+<Steps>
+  <Step title="Open Stimulus Library">
+    Navigate to **Settings** > **Stimulus Library**.
+  </Step>
+  <Step title="Click Create Set">
+    Click the **Create Set** button.
+  </Step>
+  <Step title="Name the Set">
+    Enter a descriptive name (e.g., "Food Items Set A", "Music Clips Week 1").
+  </Step>
+  <Step title="Select 5 Stimuli">
+    Click to select exactly 5 stimuli from your library. Selected items show a checkmark.
+  </Step>
+  <Step title="Save">
+    Click **Save Set** to create the stimulus set.
+  </Step>
+</Steps>
+
+<Note>
+All 5 stimuli in a set must be the same type (all images or all audio).
+</Note>
+
+### Managing Sets
+
+| Action | Description |
+| --- | --- |
+| View | See which stimuli are included in a set |
+| Edit | Change the name or swap stimuli (if no sessions use this set) |
+| Duplicate | Create a copy of the set to modify |
+| Delete | Remove the set (only if no sessions reference it) |
+
+### Set Naming Conventions
+
+Use clear, descriptive names for your stimulus sets:
+
+- Include the category: "Toys Set 1", "Foods Set A"
+- Include date/version if relevant: "Music 2024-03", "Images v2"
+- Avoid generic names: "Test", "Set 1", "Untitled"
+
+---
+
+## Using Sets in Sessions
+
+When creating a session, you select a stimulus set:
+
+1. Choose the participant
+2. Select the assessment type
+3. Choose stimulus type (Image or Audio)
+4. Select from available sets of that type
+
+The same set can be used across multiple sessions and participants.
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Prepare stimuli before sessions">
+    Upload and organize all stimuli into sets before scheduling assessment sessions. This avoids delays during participant visits.
+  </Accordion>
+  <Accordion title="Use consistent naming">
+    Establish a naming convention for your research project. Consistent names make data analysis easier.
+  </Accordion>
+  <Accordion title="Back up original files">
+    Keep copies of your original stimulus files outside EdgeFlow. The database stores processed copies, not originals.
+  </Accordion>
+  <Accordion title="Test sets before live sessions">
+    Create a test participant and run a practice session with new stimulus sets to verify all files display correctly.
+  </Accordion>
+</AccordionGroup>

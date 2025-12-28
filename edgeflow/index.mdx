@@ -1,0 +1,71 @@
+---
+title: "What is EdgeFlow?"
+description: "A desktop application for conducting behavioral preference assessments using VMSWO and conjugate reinforcement methodology"
+icon: "wave-pulse"
+---
+
+EdgeFlow is a cross-platform desktop application designed for behavioral researchers and ABA practitioners to conduct structured stimulus preference assessments. It combines verbal multiple stimulus without replacement (VMSWO) procedures with conjugate reinforcement assessments to provide comprehensive preference data.
+
+## Key Features
+
+<CardGroup cols={2}>
+  <Card title="VMSWO Assessments" icon="list-check">
+    Conduct structured verbal multiple stimulus without replacement assessments with automatic counterbalancing across three blocks.
+  </Card>
+  <Card title="Conjugate Reinforcement" icon="hand-fist">
+    Measure behavioral engagement through force-based feedback using Arduino-powered dynamometer hardware.
+  </Card>
+  <Card title="Encrypted Data" icon="lock">
+    All participant data is stored locally with SQLCipher encryption, ensuring research data security and compliance.
+  </Card>
+  <Card title="Comprehensive Analysis" icon="chart-line">
+    Built-in correspondence analysis, preference ranking, and statistical tools including chi-square calculations.
+  </Card>
+</CardGroup>
+
+## How It Works
+
+EdgeFlow implements a research-validated methodology for preference assessment:
+
+<Steps>
+  <Step title="Create Stimulus Sets">
+    Upload images or audio files and organize them into sets of 5 stimuli for assessment.
+  </Step>
+  <Step title="Run VMSWO Phase">
+    Participants verbally indicate their preferred stimulus across three counterbalanced blocks to establish preference rankings.
+  </Step>
+  <Step title="Run Conjugate Phase">
+    Participants engage with stimuli while grip force is measured via Arduino dynamometer, providing behavioral engagement data.
+  </Step>
+  <Step title="Analyze Correspondence">
+    EdgeFlow automatically calculates preference rankings, force metrics, and correspondence between verbal preferences and behavioral engagement.
+  </Step>
+</Steps>
+
+## Target Audience
+
+EdgeFlow is designed for:
+
+- **Behavioral researchers** conducting preference assessment studies
+- **ABA practitioners** evaluating stimulus preferences for intervention planning
+- **Clinical settings** requiring structured, repeatable preference evaluations
+- **Academic environments** teaching preference assessment methodology
+
+## Research Foundation
+
+EdgeFlow implements the methodology described in Sheridan et al. (2024), combining VMSWO procedures with conjugate reinforcement assessments to evaluate correspondence between stated preferences and behavioral engagement.
+
+<Info>
+EdgeFlow is developed by BGF Development, LLC. For questions or support, visit the [GitHub repository](https://github.com/bgfdev/edgeflow).
+</Info>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Installation" icon="download" href="/edgeflow/installation">
+    Download and install EdgeFlow on your system
+  </Card>
+  <Card title="Quick Start" icon="rocket" href="/edgeflow/quickstart">
+    Run your first preference assessment
+  </Card>
+</CardGroup>

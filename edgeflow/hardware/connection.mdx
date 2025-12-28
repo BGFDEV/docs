@@ -1,0 +1,201 @@
+---
+title: "Dynamometer Connection"
+description: "Configure the serial port connection between EdgeFlow and Arduino"
+icon: "plug"
+---
+
+This guide covers connecting your Arduino dynamometer to EdgeFlow and configuring the serial communication.
+
+## Prerequisites
+
+Before connecting:
+
+- Arduino is assembled with force sensor and firmware uploaded
+- USB cable is available
+- EdgeFlow is installed and running
+
+---
+
+## Connecting the Arduino
+
+<Steps>
+  <Step title="Connect USB Cable">
+    Connect the Arduino to your computer via USB. Use a direct connection—avoid USB hubs if possible.
+  </Step>
+  <Step title="Wait for Recognition">
+    Your computer should recognize the Arduino. On Windows, you may see a driver installation notification.
+  </Step>
+  <Step title="Note the Port">
+    Identify the serial port:
+    - **macOS**: `/dev/tty.usbmodem*` or `/dev/tty.usbserial*`
+    - **Windows**: `COM3`, `COM4`, etc.
+    - **Linux**: `/dev/ttyUSB0` or `/dev/ttyACM0`
+  </Step>
+</Steps>
+
+---
+
+## Configuring in EdgeFlow
+
+<Steps>
+  <Step title="Open Settings">
+    Navigate to **Settings** > **Hardware**.
+  </Step>
+  <Step title="Select Serial Port">
+    From the **Port** dropdown, select your Arduino's port.
+  </Step>
+  <Step title="Set Baud Rate">
+    Ensure baud rate is set to **115200** (default for EdgeFlow firmware).
+  </Step>
+  <Step title="Test Connection">
+    Click **Test Connection**. You should see:
+    - Connection status: "Connected"
+    - Live force reading updating as you grip
+  </Step>
+  <Step title="Save">
+    Click **Save** to store the configuration.
+  </Step>
+</Steps>
+
+---
+
+## Connection Settings
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| Serial Port | Auto-detect | The COM port or device path |
+| Baud Rate | 115200 | Communication speed |
+| Auto-reconnect | Enabled | Automatically reconnect if disconnected |
+| Timeout | 5 seconds | Connection timeout threshold |
+
+<Note>
+EdgeFlow remembers your port selection. If you always use the same USB port, the Arduino should auto-connect on future launches.
+</Note>
+
+---
+
+## Port Selection
+
+### macOS
+
+Ports typically appear as:
+- `/dev/tty.usbmodemXXXX` (genuine Arduino)
+- `/dev/tty.usbserialXXXX` (FTDI-based boards)
+- `/dev/tty.wchusbserialXXXX` (CH340 boards)
+
+<Tip>
+If multiple ports appear, disconnect the Arduino and note which port disappears. That's your Arduino.
+</Tip>
+
+### Windows
+
+Ports appear as `COMx` where x is a number. To identify:
+
+1. Open Device Manager
+2. Expand **Ports (COM & LPT)**
+3. Look for "Arduino" or "USB Serial Device"
+
+### Linux
+
+Ports typically appear as:
+- `/dev/ttyACM0` (most Arduino boards)
+- `/dev/ttyUSB0` (FTDI-based boards)
+
+You may need to add your user to the `dialout` group:
+
+```bash
+sudo usermod -a -G dialout $USER
+```
+
+Log out and back in for the change to take effect.
+
+---
+
+## Connection Status
+
+EdgeFlow shows connection status in multiple places:
+
+| Location | Indicator |
+| --- | --- |
+| Home screen | System status panel |
+| Settings > Hardware | Connection indicator |
+| Session setup | Equipment checklist |
+| Session runtime | Real-time status |
+
+### Status States
+
+| Status | Meaning |
+| --- | --- |
+| Connected | Arduino detected and responding |
+| Disconnected | No connection established |
+| Reconnecting | Connection lost, attempting to restore |
+| Error | Connection failed with error |
+
+---
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Port not appearing in dropdown">
+    - Ensure USB cable is connected
+    - Try a different USB cable (some cables are power-only)
+    - Check if Arduino is powered (onboard LED should be on)
+    - On Windows, install Arduino USB drivers
+    - On Linux, check user permissions (dialout group)
+  </Accordion>
+  <Accordion title="Connection test fails">
+    - Verify correct port is selected
+    - Ensure baud rate matches firmware (115200)
+    - Check that no other application is using the port (Arduino IDE, serial monitor)
+    - Restart EdgeFlow and try again
+  </Accordion>
+  <Accordion title="Connection drops during session">
+    - Use a direct USB connection (not through a hub)
+    - Check for loose cable connections
+    - Try a shorter USB cable
+    - Ensure adequate power supply to the Arduino
+  </Accordion>
+  <Accordion title="Multiple ports showing">
+    - Disconnect the Arduino
+    - Refresh the port list
+    - Reconnect and select the newly appeared port
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Advanced Configuration
+
+### Custom Baud Rate
+
+If using custom firmware with different baud rate:
+
+1. Open **Settings** > **Hardware** > **Advanced**
+2. Enter custom baud rate
+3. Test connection
+
+<Warning>
+Only change baud rate if you've modified the Arduino firmware. Mismatched baud rates will prevent communication.
+</Warning>
+
+### Connection Logging
+
+For debugging connection issues:
+
+1. Open **Settings** > **Advanced**
+2. Enable **Debug logging**
+3. Reproduce the issue
+4. Check the log file at the displayed path
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Calibration" icon="scale-balanced" href="/edgeflow/hardware/calibration">
+    Calibrate the force sensor
+  </Card>
+  <Card title="Assessment Settings" icon="sliders" href="/edgeflow/settings/assessment">
+    Configure force thresholds and trial settings
+  </Card>
+</CardGroup>

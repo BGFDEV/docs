@@ -1,0 +1,162 @@
+---
+title: "Assessment Settings"
+description: "Configure assessment parameters, timing, and behavior"
+icon: "sliders"
+---
+
+Assessment settings control how EdgeFlow conducts VMSWO and conjugate assessments. Configure these to match your research protocol.
+
+## Accessing Settings
+
+Navigate to **Settings** > **Assessment** to view and modify these options.
+
+---
+
+## VMSWO Settings
+
+### Block Configuration
+
+| Setting | Default | Range | Description |
+| --- | --- | --- | --- |
+| Number of Blocks | 3 | 1-5 | How many VMSWO blocks per session |
+| Counterbalancing | Circular rotation | Fixed, Random, Circular | How stimulus order varies across blocks |
+
+<Note>
+The standard VMSWO methodology uses 3 blocks with circular rotation. Only change these if your protocol specifically requires different parameters.
+</Note>
+
+### Timing
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| Instruction Duration | 5 seconds | How long instructions display before starting |
+| Block Transition Duration | 3 seconds | Pause between blocks |
+
+---
+
+## Conjugate Settings
+
+### Trial Parameters
+
+| Setting | Default | Range | Description |
+| --- | --- | --- | --- |
+| Trial Duration | 30 seconds | 10-120 sec | Maximum length per stimulus trial |
+| Unlimited Duration | Off | On/Off | Allow trials to run until manually ended |
+
+### Clarity Mechanic
+
+| Setting | Default | Range | Description |
+| --- | --- | --- | --- |
+| Initial Clarity | 100% | 50-100% | Starting clarity when stimulus appears |
+| Fade Rate | 10%/sec | 5-20%/sec | How quickly clarity decreases |
+| Force-to-Clarity Ratio | 10:1 | 5-20:1 | Clarity units restored per kg of force |
+| Minimum Clarity | 10% | 0-50% | Clarity floor (never goes below this) |
+
+<Tip>
+Lower fade rates and higher force ratios make the task easier. Adjust based on participant capabilities and your research goals.
+</Tip>
+
+### Inter-Trial Interval (ITI)
+
+| Setting | Default | Range | Description |
+| --- | --- | --- | --- |
+| ITI Duration | 3 seconds | 2-10 sec | Rest period between trials |
+| Show Countdown | On | On/Off | Display countdown timer during ITI |
+| Allow Manual Skip | Off | On/Off | Let researcher skip remaining ITI |
+
+---
+
+## Presentation Order
+
+Control the order stimuli are presented during conjugate phase:
+
+| Option | Description |
+| --- | --- |
+| VMSWO-Ranked | Present in order of VMSWO preference (HP first) |
+| Quasi-Random | Randomized with constraints (no repeats) |
+| Counterbalanced | Systematic rotation across participants |
+| Fully Random | Completely randomized order |
+
+<Note>
+For Full Protocol sessions, VMSWO-Ranked order allows evaluation of whether participants apply more force early (when HP stimuli appear) vs. late (LP stimuli).
+</Note>
+
+---
+
+## Researcher Information
+
+Stored with each session for documentation:
+
+| Field | Description |
+| --- | --- |
+| Researcher Name | Name of person conducting sessions |
+| Institution | Organization or facility name |
+| Contact Email | Contact for data inquiries |
+| IRB Protocol Number | Ethics approval reference |
+
+---
+
+## Per-Session Overrides
+
+Most settings can be overridden when creating a session:
+
+<Steps>
+  <Step title="Start Session Setup">
+    Begin the session creation wizard.
+  </Step>
+  <Step title="Open Advanced Options">
+    Click **Advanced Options** before launching.
+  </Step>
+  <Step title="Modify Settings">
+    Change any parameters for this session only.
+  </Step>
+  <Step title="Launch">
+    The session uses your overrides; defaults remain unchanged.
+  </Step>
+</Steps>
+
+---
+
+## Recommended Configurations
+
+### Standard Research Protocol
+
+| Setting | Value |
+| --- | --- |
+| VMSWO Blocks | 3 |
+| Counterbalancing | Circular rotation |
+| Trial Duration | 30 seconds |
+| ITI Duration | 3 seconds |
+| Fade Rate | 10%/sec |
+
+### Participants with Motor Limitations
+
+| Setting | Value |
+| --- | --- |
+| Trial Duration | 45-60 seconds |
+| Fade Rate | 5%/sec |
+| Force-to-Clarity Ratio | 15:1 or 20:1 |
+| Minimum Clarity | 25% |
+
+### Quick Screening
+
+| Setting | Value |
+| --- | --- |
+| VMSWO Blocks | 1 or 2 |
+| Trial Duration | 15 seconds |
+| ITI Duration | 2 seconds |
+
+---
+
+## Resetting to Defaults
+
+To restore all assessment settings to defaults:
+
+1. Navigate to **Settings** > **Assessment**
+2. Scroll to bottom
+3. Click **Reset to Defaults**
+4. Confirm the reset
+
+<Warning>
+This resets all assessment settings. Per-session overrides on existing sessions are not affected.
+</Warning>

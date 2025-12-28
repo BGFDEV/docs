@@ -1,0 +1,187 @@
+---
+title: "Hardware Requirements"
+description: "Required equipment for conjugate reinforcement assessments"
+icon: "microchip"
+---
+
+Conjugate reinforcement assessments require Arduino-based dynamometer hardware. This page covers the required components and specifications.
+
+<Note>
+Hardware is only required for Conjugate and Full Protocol assessments. VMSWO-only assessments work without any additional hardware.
+</Note>
+
+## Required Components
+
+<CardGroup cols={2}>
+  <Card title="Arduino Board" icon="microchip">
+    Arduino Uno, Nano, or compatible board with USB connectivity
+  </Card>
+  <Card title="Force Sensor" icon="hand-fist">
+    Load cell or strain gauge dynamometer for grip force measurement
+  </Card>
+  <Card title="USB Cable" icon="usb">
+    USB-A to USB-B cable for Arduino connection
+  </Card>
+  <Card title="Grip Handle" icon="grip">
+    Ergonomic grip attachment for participant use
+  </Card>
+</CardGroup>
+
+---
+
+## Recommended Setup
+
+### Arduino Board
+
+| Specification | Requirement |
+| --- | --- |
+| Board Type | Arduino Uno R3 (recommended) or compatible |
+| Processor | ATmega328P or equivalent |
+| USB Interface | USB-B or USB-C |
+| Operating Voltage | 5V |
+
+<Tip>
+Arduino Uno R3 is recommended for widest compatibility. Other boards may work but are not officially tested.
+</Tip>
+
+### Force Sensor
+
+| Specification | Requirement |
+| --- | --- |
+| Type | Strain gauge load cell or grip dynamometer |
+| Capacity | 50kg minimum recommended |
+| Interface | Analog output or HX711 amplifier |
+| Sampling Rate | Support for 20Hz readings |
+
+### Pre-Built Options
+
+If you prefer not to build custom hardware:
+
+- Commercial grip dynamometers with analog output
+- Arduino-compatible force sensor kits with HX711 amplifier
+- Research-grade hand dynamometers with serial output
+
+<Note>
+Contact your equipment supplier to confirm Arduino compatibility before purchasing.
+</Note>
+
+---
+
+## Wiring Overview
+
+A typical setup connects:
+
+```
+Force Sensor → HX711 Amplifier → Arduino → USB → Computer
+```
+
+### HX711 Connection
+
+| HX711 Pin | Arduino Pin |
+| --- | --- |
+| VCC | 5V |
+| GND | GND |
+| DT (Data) | Digital Pin 2 |
+| SCK (Clock) | Digital Pin 3 |
+
+### Load Cell Connection
+
+| Load Cell Wire | HX711 Terminal |
+| --- | --- |
+| Red (E+) | E+ |
+| Black (E-) | E- |
+| White (A-) | A- |
+| Green (A+) | A+ |
+
+<Warning>
+Wiring varies by load cell manufacturer. Always consult your specific sensor's documentation.
+</Warning>
+
+---
+
+## Arduino Firmware
+
+EdgeFlow communicates with Arduino via serial protocol. The Arduino must run compatible firmware that:
+
+1. Reads force sensor at 20Hz
+2. Outputs force values in kg via serial
+3. Responds to calibration commands
+
+### Installing Firmware
+
+<Steps>
+  <Step title="Download Firmware">
+    Download the EdgeFlow Arduino firmware from the [GitHub releases](https://github.com/bgfdev/edgeflow-arduino).
+  </Step>
+  <Step title="Open Arduino IDE">
+    Launch Arduino IDE and open the downloaded `.ino` file.
+  </Step>
+  <Step title="Select Board">
+    Go to **Tools** > **Board** and select your Arduino model.
+  </Step>
+  <Step title="Select Port">
+    Go to **Tools** > **Port** and select your Arduino's serial port.
+  </Step>
+  <Step title="Upload">
+    Click **Upload** to flash the firmware.
+  </Step>
+</Steps>
+
+---
+
+## Testing Hardware
+
+Before using in assessments, verify your hardware:
+
+### Serial Monitor Test
+
+1. Open Arduino IDE
+2. Go to **Tools** > **Serial Monitor**
+3. Set baud rate to 115200
+4. You should see force readings (in kg) appearing every 50ms
+
+### EdgeFlow Detection Test
+
+1. Launch EdgeFlow
+2. Navigate to **Settings** > **Hardware**
+3. Your Arduino should appear in the port list
+4. Select the port and click **Test Connection**
+5. Grip the dynamometer—force reading should update in real-time
+
+---
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Arduino not detected">
+    - Check USB cable connection
+    - Try a different USB port
+    - Install Arduino USB drivers if on Windows
+    - Ensure no other application is using the serial port
+  </Accordion>
+  <Accordion title="Force readings are zero">
+    - Verify wiring connections
+    - Check that firmware is uploaded correctly
+    - Ensure HX711 power connections are correct
+    - Try recalibrating (see [Calibration](/edgeflow/hardware/calibration))
+  </Accordion>
+  <Accordion title="Readings are unstable or noisy">
+    - Ensure solid mechanical connections
+    - Check for loose wires
+    - Use shielded cables if electrical noise is present
+    - Verify adequate power supply
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Connection" icon="plug" href="/edgeflow/hardware/connection">
+    Configure the serial port connection
+  </Card>
+  <Card title="Calibration" icon="scale-balanced" href="/edgeflow/hardware/calibration">
+    Calibrate the force sensor
+  </Card>
+</CardGroup>

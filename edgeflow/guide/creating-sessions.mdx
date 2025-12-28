@@ -1,0 +1,178 @@
+---
+title: "Creating Sessions"
+description: "Set up and configure assessment sessions in EdgeFlow"
+icon: "circle-play"
+---
+
+Sessions are the core unit of data collection in EdgeFlow. Each session represents one complete assessment for one participant.
+
+## Session Setup Wizard
+
+EdgeFlow uses a step-by-step wizard to configure sessions:
+
+<Steps>
+  <Step title="Start New Session">
+    From the home screen, click **New Session**. Or navigate to a participant and click **Start Session**.
+  </Step>
+  <Step title="Select Participant">
+    Choose the participant from the dropdown. You can also create a new participant from this screen.
+  </Step>
+  <Step title="Choose Assessment Type">
+    Select one of:
+    - **VMSWO Only**: Verbal preference assessment only
+    - **Conjugate Only**: Force-based assessment only (requires hardware)
+    - **Full Protocol**: VMSWO followed by Conjugate
+  </Step>
+  <Step title="Select Stimulus Type">
+    Choose **Image** or **Audio** depending on your prepared stimuli.
+  </Step>
+  <Step title="Choose Stimulus Set">
+    Select from available stimulus sets of the chosen type.
+  </Step>
+  <Step title="Equipment Checklist">
+    Verify equipment readiness (see below).
+  </Step>
+  <Step title="Launch Session">
+    Click **Start Session** to begin.
+  </Step>
+</Steps>
+
+---
+
+## Assessment Type Selection
+
+Choose based on your research objectives:
+
+| Type | Duration | Hardware | Output |
+| --- | --- | --- | --- |
+| VMSWO Only | ~5-10 min | None | Preference rankings |
+| Conjugate Only | ~5-10 min | Arduino required | Force data |
+| Full Protocol | ~15-20 min | Arduino required | Rankings + Force + Correspondence |
+
+<Tip>
+If you're unsure which assessment type to use, see [Assessment Types](/edgeflow/concepts/assessments) for detailed guidance.
+</Tip>
+
+---
+
+## Equipment Checklist
+
+Before starting a session, EdgeFlow displays a checklist:
+
+### VMSWO-Only Checklist
+
+- [ ] Participant window display ready
+- [ ] Researcher can see participant responses
+- [ ] Stimulus set loaded correctly (preview available)
+
+### Conjugate / Full Protocol Checklist
+
+- [ ] Arduino connected and detected
+- [ ] Dynamometer calibrated recently
+- [ ] Force readings responding correctly
+- [ ] Participant window display ready
+- [ ] Stimulus set loaded correctly
+
+<Warning>
+Do not proceed if any checklist items are incomplete. Unready hardware can result in lost data.
+</Warning>
+
+### Verifying Hardware Readiness
+
+The checklist shows real-time status:
+
+| Indicator | Meaning |
+| --- | --- |
+| Green checkmark | Ready |
+| Yellow warning | Needs attention |
+| Red X | Not ready—cannot proceed |
+
+Click any item to see details or navigate to fix the issue.
+
+---
+
+## Pre-Session Configuration
+
+Before launching, you can adjust session-specific settings:
+
+### Quick Settings
+
+| Setting | Description | Location |
+| --- | --- | --- |
+| Trial Duration | Maximum length per conjugate trial | Advanced settings panel |
+| ITI Duration | Time between trials | Advanced settings panel |
+| Presentation Order | Stimulus order strategy | Advanced settings panel |
+
+### Default vs. Session Settings
+
+Settings configured here override your default settings for this session only. To change defaults, go to **Settings** > **Assessment**.
+
+<Note>
+Most users can proceed with default settings. Only adjust if your research protocol requires specific parameters.
+</Note>
+
+---
+
+## Launching the Session
+
+When you click **Start Session**:
+
+1. EdgeFlow opens the **Participant Window** (separate window/display)
+2. The main window becomes the **Researcher Monitor**
+3. Data recording begins
+
+<Warning>
+Once a session is launched, it cannot be paused. Ensure the participant and environment are ready before starting.
+</Warning>
+
+### Multi-Display Setup
+
+For optimal use:
+
+1. Connect a second monitor
+2. Drag the participant window to the participant-facing display
+3. Keep the researcher monitor on your primary display
+
+EdgeFlow remembers window positions for future sessions.
+
+---
+
+## Session States
+
+| State | Description |
+| --- | --- |
+| Not Started | Session configured but not launched |
+| In Progress | Currently running |
+| Completed | All phases finished, data saved |
+| Incomplete | Session terminated before completion |
+
+<Note>
+Incomplete sessions are saved with partial data. You can view what was collected, but correspondence analysis requires completed Full Protocol sessions.
+</Note>
+
+---
+
+## Canceling a Session
+
+If you need to stop a session before completion:
+
+1. Press `Esc` or click **End Session** in the researcher monitor
+2. Confirm cancellation in the dialog
+3. Partial data is saved with "Incomplete" status
+
+<Warning>
+Canceled sessions cannot be resumed. You must start a new session to re-collect data.
+</Warning>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Running Assessments" icon="play" href="/edgeflow/guide/running-assessments">
+    Conduct the session with participants
+  </Card>
+  <Card title="Viewing Results" icon="chart-bar" href="/edgeflow/guide/results">
+    Review session data after completion
+  </Card>
+</CardGroup>

@@ -1,0 +1,184 @@
+---
+title: "Correspondence Analysis"
+description: "Evaluating the relationship between verbal preferences and behavioral engagement"
+icon: "chart-scatter"
+---
+
+Correspondence analysis compares VMSWO preference rankings with conjugate reinforcement force data to determine whether stated preferences match behavioral engagement.
+
+## What is Correspondence?
+
+Correspondence refers to the alignment between:
+
+- **Verbal preferences**: What the participant says they prefer (VMSWO ranking)
+- **Behavioral engagement**: How much effort they expend to access stimuli (conjugate force)
+
+When a participant applies more force to access stimuli they ranked as high-preference, there is **correspondence** between their verbal and behavioral responses.
+
+---
+
+## Correspondence Classifications
+
+EdgeFlow automatically classifies each session into one of five patterns:
+
+### HP/LP Correspondence
+
+<Check>
+High force for high-preference stimuli AND low force for low-preference stimuli.
+</Check>
+
+This is the ideal outcome indicating:
+- VMSWO rankings are valid indicators of preference
+- The participant's verbal responses match their behavioral engagement
+- Selected HP stimuli are likely to function as effective reinforcers
+
+### HP-Only Correspondence
+
+High force for high-preference stimuli, but force for low-preference stimuli is **not** differentiated.
+
+This indicates:
+- HP stimuli are behaviorally preferred
+- LP stimuli may still evoke moderate engagement
+- Consider evaluating additional stimuli to find true LP items
+
+### LP-Only Correspondence
+
+Low force for low-preference stimuli, but force for high-preference stimuli is **not** differentiated.
+
+This indicates:
+- LP identification is accurate
+- HP stimuli may not be strongly preferred
+- May need to identify more potent HP stimuli
+
+### Decreasing Trend
+
+Force decreases across presentations regardless of preference ranking.
+
+This may indicate:
+- Fatigue or satiation
+- Loss of motivation during the assessment
+- Need for shorter trial durations or breaks
+
+### Undifferentiated
+
+No clear pattern between preference ranking and force.
+
+This indicates:
+- VMSWO rankings do not predict behavioral engagement
+- Verbal and behavioral preference measures do not align
+- May reflect participant characteristics, stimulus selection, or procedural issues
+
+---
+
+## How Correspondence is Calculated
+
+### Force Ranking
+
+EdgeFlow ranks stimuli by mean force (or peak force, depending on settings):
+
+1. Calculate mean force for each stimulus across all conjugate trials
+2. Rank stimuli from highest force (1) to lowest force (5)
+
+### Comparing Rankings
+
+The VMSWO preference rank is compared to the force rank:
+
+| Stimulus | VMSWO Rank | Force Rank | Match? |
+| --- | --- | --- | --- |
+| A | 1 | 2 | Close |
+| B | 2 | 1 | Close |
+| C | 3 | 3 | Match |
+| D | 4 | 5 | Close |
+| E | 5 | 4 | Close |
+
+### Classification Logic
+
+EdgeFlow evaluates:
+
+1. **HP Analysis**: Do stimuli ranked 1-2 in VMSWO receive the highest force?
+2. **LP Analysis**: Do stimuli ranked 4-5 in VMSWO receive the lowest force?
+3. **Trend Analysis**: Does force systematically decrease across trials?
+4. **Differentiation**: Is there meaningful variance in force across stimuli?
+
+---
+
+## Statistical Analysis
+
+### Chi-Square Test
+
+EdgeFlow includes a chi-square calculator for formal correspondence testing:
+
+<Steps>
+  <Step title="Open Analysis">
+    Navigate to the **Analysis** page or open a completed session.
+  </Step>
+  <Step title="Access Chi-Square Calculator">
+    Click the **Chi-Square** button or tab.
+  </Step>
+  <Step title="Review Results">
+    EdgeFlow displays the chi-square statistic, degrees of freedom, and p-value.
+  </Step>
+</Steps>
+
+The chi-square test evaluates whether the observed correspondence pattern differs significantly from chance.
+
+### Interpreting Statistical Output
+
+| Statistic | Interpretation |
+| --- | --- |
+| Chi-square | Higher values indicate stronger deviation from expected |
+| p-value < 0.05 | Statistically significant correspondence |
+| p-value ≥ 0.05 | Correspondence may be due to chance |
+
+<Note>
+Statistical significance does not imply clinical significance. Use chi-square results alongside visual inspection of force patterns.
+</Note>
+
+---
+
+## Visualizing Correspondence
+
+EdgeFlow provides several visualizations:
+
+### Force-Rank Heatmap
+
+A matrix showing force values by stimulus and trial, with color intensity indicating force magnitude. Use this to spot patterns at a glance.
+
+### Force Distribution Chart
+
+Bar or box plots comparing force distributions for HP vs LP stimuli. Clear separation indicates correspondence.
+
+### Time-Series Plots
+
+Force over time for each trial, showing engagement patterns within and across stimuli.
+
+---
+
+## Using Correspondence Results
+
+| Result | Implication | Action |
+| --- | --- | --- |
+| HP/LP Correspondence | VMSWO is a valid preference indicator | Use VMSWO rankings for intervention |
+| HP-Only | HP stimuli are valid | Seek better LP discriminators |
+| LP-Only | LP identification is valid | Seek more potent HP stimuli |
+| Decreasing Trend | Assessment procedure issue | Shorten trials, add breaks |
+| Undifferentiated | VMSWO may not predict behavior | Use alternative assessment or different stimuli |
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Run Full Protocol for clinical decisions">
+    When selecting reinforcers for intervention, run the Full Protocol to verify correspondence before committing to stimuli.
+  </Accordion>
+  <Accordion title="Consider individual patterns">
+    Some participants may show verbal-behavioral discordance due to language, motor, or motivational factors. Use multiple data sources.
+  </Accordion>
+  <Accordion title="Replicate before concluding">
+    A single session may not represent stable preferences. Consider running multiple sessions to confirm patterns.
+  </Accordion>
+  <Accordion title="Document undifferentiated results">
+    Undifferentiated correspondence is a valid finding. Document it rather than discarding—it may inform stimulus selection or assessment modifications.
+  </Accordion>
+</AccordionGroup>

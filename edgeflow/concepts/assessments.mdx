@@ -1,0 +1,131 @@
+---
+title: "Assessment Types"
+description: "Understanding VMSWO and conjugate reinforcement assessments in EdgeFlow"
+icon: "clipboard-list"
+---
+
+EdgeFlow supports three assessment types, each designed for specific research objectives. Understanding these methodologies is essential for conducting valid preference evaluations.
+
+## VMSWO (Verbal Multiple Stimulus Without Replacement)
+
+VMSWO is a preference assessment procedure where participants verbally indicate their most preferred stimulus from an array, with selected items removed from subsequent presentations.
+
+### How It Works
+
+<Steps>
+  <Step title="Initial Presentation">
+    All 5 stimuli are presented simultaneously. The participant is asked: "Which one do you want most?"
+  </Step>
+  <Step title="Selection and Removal">
+    When the participant selects a stimulus, it is removed from the array. This selection is recorded.
+  </Step>
+  <Step title="Repeated Presentations">
+    The remaining stimuli are presented again. The participant selects from 4, then 3, then 2, then 1 stimulus.
+  </Step>
+  <Step title="Block Completion">
+    When all 5 stimuli have been selected, the block is complete and a preference order is established.
+  </Step>
+</Steps>
+
+### Counterbalancing Across Blocks
+
+EdgeFlow uses **circular rotation** to control for order effects. Each of the 3 blocks presents stimuli in a different initial order:
+
+| Block | Initial Order |
+| --- | --- |
+| Block 1 | A, B, C, D, E |
+| Block 2 | B, C, D, E, A |
+| Block 3 | C, D, E, A, B |
+
+This ensures that position bias (e.g., always selecting the first item) is distributed across stimuli.
+
+### Output
+
+VMSWO produces a **preference ranking** from 1 (most preferred) to 5 (least preferred) based on aggregate selection frequency across all blocks.
+
+---
+
+## Conjugate Reinforcement Assessment
+
+Conjugate reinforcement assessment measures behavioral engagement with stimuli through force-based feedback. Participants grip a dynamometer while viewing stimuli, and their grip force indicates engagement level.
+
+### How It Works
+
+<Steps>
+  <Step title="Stimulus Presentation">
+    A stimulus is displayed on screen at full clarity (100% opacity).
+  </Step>
+  <Step title="Force Measurement">
+    The participant grips the dynamometer. Force readings are captured continuously at 20Hz.
+  </Step>
+  <Step title="Clarity Feedback">
+    The stimulus clarity fades over time. Applying grip force restores clarity, creating a contingency between effort and stimulus access.
+  </Step>
+  <Step title="Trial Completion">
+    After the trial duration elapses, the stimulus is removed and an inter-trial interval begins before the next stimulus.
+  </Step>
+</Steps>
+
+### The Clarity Mechanic
+
+The "clarity" system creates a conjugate reinforcement schedule:
+
+- **Clarity starts at 100%** (fully visible/audible)
+- **Clarity fades at a configurable rate** (default: 10% per second)
+- **Applying force restores clarity** proportionally (default: 10 clarity units per 1 kg of force)
+- **Minimum clarity is 10%** (stimulus never completely disappears)
+
+This mechanic means participants must actively engage (grip harder) to maintain access to preferred stimuli.
+
+### Force Metrics
+
+EdgeFlow captures and calculates:
+
+| Metric | Description |
+| --- | --- |
+| Peak Force | Maximum grip force during the trial (kg) |
+| Mean Force | Average grip force across the trial (kg) |
+| Force Samples | Raw readings at 20Hz for detailed analysis |
+
+### Output
+
+Conjugate assessment produces **force rankings** based on mean or peak force per stimulus, allowing comparison with VMSWO preference rankings.
+
+---
+
+## Full Protocol
+
+The Full Protocol runs both assessments sequentially:
+
+<Steps>
+  <Step title="VMSWO Phase">
+    Complete VMSWO assessment across 3 blocks to establish preference rankings.
+  </Step>
+  <Step title="Automatic Transition">
+    EdgeFlow transitions to conjugate phase without researcher intervention.
+  </Step>
+  <Step title="Conjugate Phase">
+    Run conjugate reinforcement trials with the same stimuli to measure behavioral engagement.
+  </Step>
+  <Step title="Correspondence Analysis">
+    Compare VMSWO rankings with force rankings to evaluate preference-behavior correspondence.
+  </Step>
+</Steps>
+
+<Tip>
+The Full Protocol is the recommended assessment type when you need to evaluate whether stated preferences correspond with behavioral engagement.
+</Tip>
+
+---
+
+## Choosing an Assessment Type
+
+| Assessment | Use When |
+| --- | --- |
+| **VMSWO Only** | You only need verbal preference data, no hardware available, or for initial screening |
+| **Conjugate Only** | You have established preferences and want to measure engagement, or for follow-up studies |
+| **Full Protocol** | You need complete preference-behavior correspondence data for research or clinical decisions |
+
+<Note>
+Conjugate assessments require Arduino dynamometer hardware. See [Hardware Requirements](/edgeflow/hardware/requirements) for setup instructions.
+</Note>

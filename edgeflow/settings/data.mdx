@@ -1,0 +1,231 @@
+---
+title: "Data Management"
+description: "Configure backups, storage, and data retention policies"
+icon: "database"
+---
+
+Data management settings control how EdgeFlow stores, backs up, and maintains your research data.
+
+## Accessing Settings
+
+Navigate to **Settings** > **Data Management** to view and modify these options.
+
+---
+
+## Database Location
+
+### Default Location
+
+EdgeFlow stores its encrypted database in the application data directory:
+
+| Platform | Default Path |
+| --- | --- |
+| macOS | `~/Library/Application Support/EdgeFlow/` |
+| Windows | `%APPDATA%\EdgeFlow\` |
+| Linux | `~/.config/EdgeFlow/` |
+
+### Custom Location
+
+To use a custom database location:
+
+<Steps>
+  <Step title="Open Data Management">
+    Navigate to **Settings** > **Data Management**.
+  </Step>
+  <Step title="Click Change Location">
+    Click **Change Database Location**.
+  </Step>
+  <Step title="Select Folder">
+    Choose a new folder for the database file.
+  </Step>
+  <Step title="Confirm Migration">
+    EdgeFlow offers to copy existing data to the new location.
+  </Step>
+</Steps>
+
+<Warning>
+Store the database on a local drive, not network storage. Network drives may cause performance issues or data corruption.
+</Warning>
+
+---
+
+## Backup Configuration
+
+### Automatic Backups
+
+| Setting | Default | Options | Description |
+| --- | --- | --- | --- |
+| Auto-Backup | Enabled | On/Off | Automatically create backups |
+| Frequency | Weekly | Daily/Weekly/Monthly | How often backups occur |
+| Keep Backups | 5 | 1-20 | Number of backups to retain |
+
+### Backup Location
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| Backup Folder | Same as database | Where backups are stored |
+| Include in Cloud Sync | No | Whether to include in iCloud/OneDrive sync |
+
+<Tip>
+Store backups in a cloud-synced folder (Dropbox, iCloud, OneDrive) for additional protection, but keep the primary database local for performance.
+</Tip>
+
+### Manual Backup
+
+Create a backup at any time:
+
+<Steps>
+  <Step title="Open Data Management">
+    Navigate to **Settings** > **Data Management**.
+  </Step>
+  <Step title="Click Create Backup">
+    Click **Create Backup Now**.
+  </Step>
+  <Step title="Confirm">
+    A backup is created with the current timestamp.
+  </Step>
+</Steps>
+
+---
+
+## Restoring from Backup
+
+<Steps>
+  <Step title="Open Data Management">
+    Navigate to **Settings** > **Data Management**.
+  </Step>
+  <Step title="Click Restore">
+    Click **Restore from Backup**.
+  </Step>
+  <Step title="Select Backup">
+    Choose from available backup files.
+  </Step>
+  <Step title="Confirm Restoration">
+    Review the backup date and confirm. Current data will be replaced.
+  </Step>
+  <Step title="Restart">
+    EdgeFlow restarts with the restored data.
+  </Step>
+</Steps>
+
+<Warning>
+Restoring from backup replaces all current data with the backup contents. Create a backup of current data first if needed.
+</Warning>
+
+---
+
+## Data Retention
+
+### Retention Policy
+
+| Setting | Default | Options | Description |
+| --- | --- | --- | --- |
+| Data Retention | Keep Forever | Forever / 30-365 days | How long to keep session data |
+
+<Note>
+When a retention period is set, sessions older than the specified period are automatically deleted. Backups are not affected by retention policies.
+</Note>
+
+### Before Enabling Retention
+
+Consider:
+
+- Your IRB data retention requirements
+- Whether you've exported all needed data
+- Backup availability for long-term storage
+
+---
+
+## Storage Statistics
+
+The Data Management screen shows:
+
+| Statistic | Description |
+| --- | --- |
+| Database Size | Current database file size |
+| Stimulus Storage | Space used by stimulus files |
+| Total Backups | Number of backup files and their total size |
+| Oldest Data | Date of oldest session in database |
+
+---
+
+## Export Configuration
+
+### Default Export Settings
+
+| Setting | Default | Options | Description |
+| --- | --- | --- | --- |
+| Default Format | CSV | CSV/JSON | Pre-selected format in export dialogs |
+| Decimal Precision | 2 | 2-4 | Decimal places for numbers |
+| Date Format | ISO | ISO/US/EU | Timestamp formatting |
+| Include Raw Force Data | No | Yes/No | Include 20Hz samples by default |
+
+### Export Folder
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| Default Export Location | Downloads | Where export files are saved |
+| Remember Last Location | Yes | Use most recent export folder |
+
+---
+
+## Database Security
+
+### Encryption
+
+EdgeFlow uses SQLCipher for database encryption:
+
+| Feature | Description |
+| --- | --- |
+| Algorithm | AES-256 |
+| Key Derivation | Argon2id |
+| At-Rest Encryption | All data encrypted on disk |
+
+### Password Management
+
+| Option | Description |
+| --- | --- |
+| Change Password | Update the database encryption password |
+| Save to Keychain | Store password in system keychain (macOS) |
+| Clear Keychain | Remove saved password |
+
+<Warning>
+If you forget your password and haven't saved it to the keychain, you cannot recover your data. Store your password securely.
+</Warning>
+
+---
+
+## Maintenance
+
+### Database Optimization
+
+Over time, the database may benefit from optimization:
+
+<Steps>
+  <Step title="Open Data Management">
+    Navigate to **Settings** > **Data Management**.
+  </Step>
+  <Step title="Click Optimize">
+    Click **Optimize Database**.
+  </Step>
+  <Step title="Wait for Completion">
+    Optimization runs (may take several minutes for large databases).
+  </Step>
+</Steps>
+
+Optimization:
+- Reclaims space from deleted records
+- Rebuilds indexes for faster queries
+- May reduce database file size
+
+### Clearing Test Data
+
+To remove test participants and sessions:
+
+1. Navigate to **Participants**
+2. Delete test participants individually, or
+3. Use **Settings** > **Data Management** > **Clear Test Data** for bulk removal
+
+<Warning>
+Clearing data is permanent. Ensure you've exported any needed records first.
+</Warning>

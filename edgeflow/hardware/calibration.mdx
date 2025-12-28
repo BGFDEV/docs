@@ -1,0 +1,198 @@
+---
+title: "Calibration"
+description: "Calibrate the Arduino dynamometer for accurate force measurements"
+icon: "scale-balanced"
+---
+
+Proper calibration ensures accurate and consistent force measurements across sessions. EdgeFlow uses a two-point calibration process.
+
+## When to Calibrate
+
+Calibrate your dynamometer:
+
+- **Before first use** with new hardware
+- **After replacing** the load cell or sensor
+- **If readings drift** or seem inaccurate
+- **Periodically** (recommended: monthly during active use)
+- **After significant temperature changes** in the environment
+
+---
+
+## Calibration Process
+
+EdgeFlow uses two-point calibration:
+
+1. **Zero offset**: Reading with no force applied
+2. **Known weight**: Reading with a known weight applied
+
+<Steps>
+  <Step title="Access Calibration">
+    Navigate to **Settings** > **Hardware** > **Calibration**.
+  </Step>
+  <Step title="Ensure Connection">
+    Verify Arduino is connected (green status indicator).
+  </Step>
+  <Step title="Start Calibration">
+    Click **Start Calibration** to begin the wizard.
+  </Step>
+  <Step title="Zero Calibration">
+    Ensure nothing is touching or pressing the sensor. Click **Capture Zero** when stable.
+  </Step>
+  <Step title="Known Weight Calibration">
+    Apply a known weight (e.g., 5 kg). Enter the weight value and click **Capture Weight** when stable.
+  </Step>
+  <Step title="Verify">
+    Test by applying different known weights and checking accuracy.
+  </Step>
+  <Step title="Save">
+    Click **Save Calibration** to store the values.
+  </Step>
+</Steps>
+
+---
+
+## Detailed Instructions
+
+### Step 1: Zero Offset
+
+<Note>
+The zero offset captures the sensor reading when no force is applied. This accounts for sensor drift and environmental factors.
+</Note>
+
+1. Orient the dynamometer in its normal use position
+2. Ensure nothing is touching the grip or sensor
+3. Wait for readings to stabilize (2-3 seconds)
+4. Click **Capture Zero**
+
+EdgeFlow captures multiple readings and averages them.
+
+### Step 2: Known Weight
+
+<Note>
+The known weight provides a reference point for scaling raw sensor values to kilograms.
+</Note>
+
+1. You'll need a known weight between 2-10 kg
+2. Apply the weight directly to the sensor in the same orientation used during assessment
+3. Hold steadily until readings stabilize
+4. Enter the exact weight value in the input field
+5. Click **Capture Weight**
+
+<Tip>
+Use a calibrated weight (like gym weights) for best accuracy. If using household items, weigh them on a reliable scale first.
+</Tip>
+
+---
+
+## Verification
+
+After calibration, verify accuracy:
+
+### Quick Check
+
+1. Apply no force—reading should be 0.0 kg (±0.1 kg)
+2. Apply your known weight—reading should match (±0.2 kg)
+3. Apply approximately half the known weight—reading should be roughly half
+
+### Detailed Verification
+
+1. Test multiple known weights if available
+2. Check readings at different grip positions
+3. Verify consistency over several minutes
+
+If readings are consistently off by more than 5%, recalibrate.
+
+---
+
+## Calibration Data
+
+EdgeFlow stores calibration with:
+
+| Field | Description |
+| --- | --- |
+| Zero Offset | Raw sensor value at zero force |
+| Scale Factor | Conversion factor to kg |
+| Calibration Date | When calibration was performed |
+| Known Weight | Weight used during calibration |
+
+### Viewing Calibration History
+
+Navigate to **Settings** > **Hardware** > **Calibration History** to see:
+
+- Past calibration records with timestamps
+- Drift trends over time
+- Option to restore previous calibration
+
+---
+
+## Calibration Tips
+
+<AccordionGroup>
+  <Accordion title="Use consistent orientation">
+    Calibrate with the sensor in the same position it will be used during assessments. Gravity affects readings.
+  </Accordion>
+  <Accordion title="Allow warm-up time">
+    If the equipment has been in storage, allow 5-10 minutes at room temperature before calibrating.
+  </Accordion>
+  <Accordion title="Use appropriate weight">
+    Choose a calibration weight in the typical measurement range. If participants usually grip at 2-5 kg, calibrate with 5 kg rather than 20 kg.
+  </Accordion>
+  <Accordion title="Document your process">
+    Note the weight used and any observations. This helps if you need to recalibrate or troubleshoot later.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Zero reading is not zero after calibration">
+    - Ensure nothing was touching the sensor during zero capture
+    - Check for mechanical binding or friction in the grip
+    - Try recalibrating in a stable environment
+  </Accordion>
+  <Accordion title="Readings are unstable during calibration">
+    - Allow more time for readings to stabilize
+    - Hold weights steadily—any movement affects readings
+    - Check for loose wiring or connections
+  </Accordion>
+  <Accordion title="Readings are off after calibration">
+    - Verify the known weight is accurate
+    - Ensure weight was applied in the correct direction
+    - Check that orientation matches assessment use
+  </Accordion>
+  <Accordion title="Calibration doesn't persist">
+    - Ensure you clicked **Save Calibration**
+    - Check for sufficient disk space
+    - Verify you have write permissions to EdgeFlow data directory
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Resetting Calibration
+
+To reset to factory defaults:
+
+1. Navigate to **Settings** > **Hardware** > **Calibration**
+2. Click **Reset to Defaults**
+3. Confirm the reset
+4. Perform a fresh calibration
+
+<Warning>
+Resetting calibration removes all stored calibration data. You must recalibrate before using the dynamometer in assessments.
+</Warning>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Assessment Settings" icon="sliders" href="/edgeflow/settings/assessment">
+    Configure force thresholds and assessment parameters
+  </Card>
+  <Card title="Quick Start" icon="rocket" href="/edgeflow/quickstart">
+    Run your first assessment
+  </Card>
+</CardGroup>

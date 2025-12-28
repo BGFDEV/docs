@@ -1,0 +1,231 @@
+---
+title: "Common Issues"
+description: "Solutions for frequently encountered problems in EdgeFlow"
+icon: "wrench"
+---
+
+This page covers common issues and their solutions. If you don't find your issue here, check the [FAQ](/edgeflow/troubleshooting/faq) or visit the [GitHub repository](https://github.com/bgfdev/edgeflow/issues).
+
+---
+
+## Application Issues
+
+<AccordionGroup>
+  <Accordion title="EdgeFlow won't launch">
+    **Symptoms**: Application doesn't open, crashes immediately, or shows error on startup.
+
+    **Solutions**:
+    1. **Restart your computer** and try again
+    2. **Check system requirements** - ensure your OS version is supported
+    3. **On macOS**: Right-click the app and select "Open" to bypass Gatekeeper
+    4. **Reinstall** the application from a fresh download
+    5. **Check console logs** for error messages (macOS: Console.app, Windows: Event Viewer)
+  </Accordion>
+
+  <Accordion title="Forgot database password">
+    **Symptoms**: Cannot access EdgeFlow data after entering wrong password.
+
+    **Solutions**:
+    1. **Check saved password**: On macOS, look in Keychain Access for "EdgeFlow"
+    2. **Try variations**: Check for caps lock, common password variations
+    3. **Restore from backup**: If you have unencrypted exports, you can reimport data into a fresh database
+
+    <Warning>
+    If you cannot recover the password and have no backups, the encrypted data cannot be retrieved.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Application is slow or unresponsive">
+    **Symptoms**: Lag when navigating, slow session loading, delayed responses.
+
+    **Solutions**:
+    1. **Close other applications** to free memory
+    2. **Optimize database**: Settings > Data Management > Optimize Database
+    3. **Check database size**: Very large databases (10,000+ sessions) may benefit from archiving old data
+    4. **Disable animations**: Settings > Display > Reduce Motion
+    5. **Restart EdgeFlow** to clear cached data
+  </Accordion>
+
+  <Accordion title="Data not saving">
+    **Symptoms**: Sessions complete but don't appear in history, settings don't persist.
+
+    **Solutions**:
+    1. **Check disk space**: Ensure sufficient storage available
+    2. **Verify permissions**: EdgeFlow needs write access to its data directory
+    3. **Avoid network drives**: Store database on local disk
+    4. **Check antivirus**: Some antivirus software may block database writes
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Hardware Issues
+
+<AccordionGroup>
+  <Accordion title="Arduino not detected">
+    **Symptoms**: Serial port dropdown is empty or Arduino doesn't appear.
+
+    **Solutions**:
+    1. **Check USB connection**: Try different port and cable
+    2. **Install drivers**:
+       - Windows: Install Arduino USB drivers
+       - Linux: Add user to `dialout` group
+    3. **Close other apps**: Arduino IDE or serial monitors may block the port
+    4. **Restart EdgeFlow** after connecting hardware
+    5. **Try different USB cable**: Some cables are power-only
+  </Accordion>
+
+  <Accordion title="Force readings are always zero">
+    **Symptoms**: Connected successfully but force never changes from 0.
+
+    **Solutions**:
+    1. **Check sensor wiring**: Verify all connections match documentation
+    2. **Verify firmware**: Ensure correct firmware is uploaded
+    3. **Recalibrate**: Run calibration procedure from Settings > Hardware
+    4. **Test with Arduino IDE**: Open Serial Monitor to check raw output
+    5. **Check HX711 power**: Ensure amplifier has proper 5V supply
+  </Accordion>
+
+  <Accordion title="Force readings are erratic or noisy">
+    **Symptoms**: Values jump around, spikes, or seem unstable.
+
+    **Solutions**:
+    1. **Check mechanical connections**: Tighten all screws and mounts
+    2. **Inspect wiring**: Look for loose or frayed connections
+    3. **Use shielded cables**: Reduce electrical interference
+    4. **Isolate power supply**: Use separate power for Arduino if needed
+    5. **Add filtering**: Firmware may need smoothing adjustments
+  </Accordion>
+
+  <Accordion title="Connection drops during session">
+    **Symptoms**: Hardware disconnects mid-session, data collection stops.
+
+    **Solutions**:
+    1. **Use direct USB connection**: Avoid USB hubs
+    2. **Shorter cable**: Use shortest cable that reaches
+    3. **Disable USB sleep**: Prevent OS from suspending USB ports
+    4. **Check power**: Ensure adequate power supply to Arduino
+    5. **Secure connections**: Prevent cable movement during session
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Session Issues
+
+<AccordionGroup>
+  <Accordion title="Session won't start">
+    **Symptoms**: Equipment checklist fails, start button disabled.
+
+    **Solutions**:
+    1. **Check all checklist items**: Address any red/yellow indicators
+    2. **Verify stimulus set**: Ensure set contains exactly 5 stimuli
+    3. **Reconnect hardware**: For conjugate sessions, verify Arduino connection
+    4. **Close other sessions**: Only one active session allowed at a time
+  </Accordion>
+
+  <Accordion title="Participant window doesn't open">
+    **Symptoms**: Session starts but only researcher monitor appears.
+
+    **Solutions**:
+    1. **Check display settings**: Verify participant display is configured
+    2. **Look on other monitor**: Window may have opened on secondary display
+    3. **Reset window position**: Settings > Display > Reset Window Positions
+    4. **Restart EdgeFlow** and try again
+  </Accordion>
+
+  <Accordion title="Session data is incomplete">
+    **Symptoms**: Some trials missing, partial data recorded.
+
+    **Solutions**:
+    1. **Check session status**: Incomplete sessions have partial data by design
+    2. **Review during session**: Monitor for connection drops during assessment
+    3. **Verify storage**: Ensure disk space was available during session
+    4. **Check logs**: Settings > Advanced > View Logs for errors
+  </Accordion>
+
+  <Accordion title="Keyboard shortcuts not working">
+    **Symptoms**: Number keys or other shortcuts don't register selections.
+
+    **Solutions**:
+    1. **Focus correct window**: Click on participant window first
+    2. **Check keyboard layout**: Ensure expected layout is active
+    3. **Disable system shortcuts**: Some OS shortcuts may conflict
+    4. **Use mouse clicks** as alternative during session
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Display Issues
+
+<AccordionGroup>
+  <Accordion title="Stimuli appear cut off or stretched">
+    **Symptoms**: Images don't display correctly, appear distorted.
+
+    **Solutions**:
+    1. **Check original image dimensions**: Use square or consistent aspect ratios
+    2. **Adjust display size**: Settings > Display > Stimulus Display Size
+    3. **Verify file format**: Use PNG or JPG for best compatibility
+    4. **Re-upload stimulus**: Delete and re-add if corruption suspected
+  </Accordion>
+
+  <Accordion title="Text is too small or large">
+    **Symptoms**: Interface text difficult to read.
+
+    **Solutions**:
+    1. **Adjust font size**: Settings > Display > Font Size
+    2. **Enable high contrast**: Settings > Display > High Contrast Mode
+    3. **Check system scaling**: OS display scaling may affect EdgeFlow
+  </Accordion>
+
+  <Accordion title="Dark mode not working">
+    **Symptoms**: Theme doesn't change when system changes.
+
+    **Solutions**:
+    1. **Set explicit theme**: Settings > Display > Theme (Light/Dark instead of System)
+    2. **Restart EdgeFlow** after changing system theme
+    3. **Check OS version**: System theme detection requires recent OS versions
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Export Issues
+
+<AccordionGroup>
+  <Accordion title="Export file is empty or corrupted">
+    **Symptoms**: Downloaded file has no data or won't open.
+
+    **Solutions**:
+    1. **Check session status**: Incomplete sessions may have limited data
+    2. **Try different format**: Export as JSON if CSV fails, or vice versa
+    3. **Export single session**: Test with one session before batch export
+    4. **Check disk space**: Ensure room for export file
+  </Accordion>
+
+  <Accordion title="Export takes very long">
+    **Symptoms**: Large exports seem to hang or take excessive time.
+
+    **Solutions**:
+    1. **Reduce scope**: Export smaller date ranges
+    2. **Disable raw force data**: Uncheck "Include raw force data" option
+    3. **Export in batches**: Split large exports into multiple files
+    4. **Wait patiently**: Large exports with force samples can take minutes
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Getting More Help
+
+If your issue isn't resolved:
+
+1. **Enable debug logging**: Settings > Advanced > Debug Logging
+2. **Reproduce the issue** with logging enabled
+3. **Check log file** for error details
+4. **Report on GitHub**: [Create an issue](https://github.com/bgfdev/edgeflow/issues) with:
+   - Your OS and version
+   - EdgeFlow version
+   - Steps to reproduce
+   - Relevant log excerpts

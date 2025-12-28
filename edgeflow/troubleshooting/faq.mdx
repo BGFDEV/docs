@@ -1,0 +1,218 @@
+---
+title: "FAQ"
+description: "Frequently asked questions about EdgeFlow"
+icon: "circle-question"
+---
+
+## General
+
+<AccordionGroup>
+  <Accordion title="What is EdgeFlow?">
+    EdgeFlow is a desktop application for conducting behavioral preference assessments. It combines verbal multiple stimulus without replacement (VMSWO) procedures with conjugate reinforcement assessments to provide comprehensive preference data with correspondence analysis.
+  </Accordion>
+
+  <Accordion title="Who is EdgeFlow for?">
+    EdgeFlow is designed for:
+    - Behavioral researchers conducting preference assessment studies
+    - ABA practitioners evaluating stimulus preferences
+    - Clinical settings requiring structured preference evaluations
+    - Academic environments teaching preference assessment methodology
+  </Accordion>
+
+  <Accordion title="What platforms does EdgeFlow support?">
+    EdgeFlow runs on:
+    - macOS 10.15 (Catalina) or later
+    - Windows 10 or later (64-bit)
+    - Linux (Ubuntu 20.04+ or equivalent)
+  </Accordion>
+
+  <Accordion title="Is my data secure?">
+    Yes. EdgeFlow stores all data locally on your computer using SQLCipher encryption (AES-256). Data is never transmitted to external servers. Your database password protects access to all participant information.
+  </Accordion>
+
+  <Accordion title="Do I need special hardware?">
+    - **For VMSWO-only assessments**: No special hardware required
+    - **For conjugate assessments**: Arduino with dynamometer sensor required
+
+    See [Hardware Requirements](/edgeflow/hardware/requirements) for details.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Assessments
+
+<AccordionGroup>
+  <Accordion title="What's the difference between VMSWO, Conjugate, and Full Protocol?">
+    - **VMSWO Only**: Measures verbal/stated preferences through structured selection across 3 blocks
+    - **Conjugate Only**: Measures behavioral engagement through grip force during stimulus exposure
+    - **Full Protocol**: Runs both sequentially, enabling correspondence analysis between verbal and behavioral measures
+
+    See [Assessment Types](/edgeflow/concepts/assessments) for full details.
+  </Accordion>
+
+  <Accordion title="Why are stimulus sets limited to 5 items?">
+    The VMSWO methodology requires exactly 5 stimuli for proper counterbalancing across 3 blocks. This ensures:
+    - Each stimulus can occupy each position
+    - Statistical validity of preference rankings
+    - Consistent assessment duration
+  </Accordion>
+
+  <Accordion title="Can I use both images and audio in one session?">
+    No. Each session uses one stimulus type (all images or all audio). This maintains consistency in the assessment procedure.
+  </Accordion>
+
+  <Accordion title="How long does a typical session take?">
+    - VMSWO Only: 5-10 minutes
+    - Conjugate Only: 5-10 minutes
+    - Full Protocol: 15-20 minutes
+
+    Actual duration depends on your configured settings (trial length, ITI, etc.).
+  </Accordion>
+
+  <Accordion title="Can I pause a session and resume later?">
+    No. Once started, sessions run continuously until completion. If interrupted, partial data is saved but the session is marked incomplete.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Hardware
+
+<AccordionGroup>
+  <Accordion title="What Arduino board should I use?">
+    Arduino Uno R3 is recommended for widest compatibility. Arduino Nano and other compatible boards may work but are not officially tested.
+  </Accordion>
+
+  <Accordion title="Where can I get the dynamometer hardware?">
+    Options include:
+    - Build your own using load cell and HX711 amplifier
+    - Commercial grip dynamometers with analog output
+    - Arduino-compatible force sensor kits
+
+    See [Hardware Requirements](/edgeflow/hardware/requirements) for specifications.
+  </Accordion>
+
+  <Accordion title="How often should I calibrate?">
+    Calibrate:
+    - Before first use with new hardware
+    - Monthly during active use
+    - After any component replacement
+    - If readings seem inaccurate
+  </Accordion>
+
+  <Accordion title="Can I use EdgeFlow without hardware?">
+    Yes. VMSWO-only assessments require no additional hardware. Only conjugate and Full Protocol assessments need the Arduino dynamometer.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Data & Privacy
+
+<AccordionGroup>
+  <Accordion title="Where is my data stored?">
+    All data is stored locally in an encrypted database:
+    - macOS: `~/Library/Application Support/EdgeFlow/`
+    - Windows: `%APPDATA%\EdgeFlow\`
+    - Linux: `~/.config/EdgeFlow/`
+  </Accordion>
+
+  <Accordion title="Is any data sent to the cloud?">
+    No. EdgeFlow operates entirely offline. No data is transmitted to external servers.
+  </Accordion>
+
+  <Accordion title="How do I back up my data?">
+    EdgeFlow can automatically back up your database:
+    1. Go to Settings > Data Management
+    2. Configure backup frequency and location
+    3. Backups are encrypted with the same password as your database
+  </Accordion>
+
+  <Accordion title="Can I export data for use in other software?">
+    Yes. Export to:
+    - CSV: For Excel, SPSS, R, and other statistical software
+    - JSON: For programmatic access and custom analysis
+
+    See [Data Export](/edgeflow/guide/export) for details.
+  </Accordion>
+
+  <Accordion title="What happens if I forget my password?">
+    If you forget your database password and haven't saved it to the system keychain, the encrypted data cannot be recovered. Store your password securely and enable keychain storage if available.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Analysis
+
+<AccordionGroup>
+  <Accordion title="What is correspondence analysis?">
+    Correspondence analysis compares VMSWO preference rankings with conjugate force data to determine whether stated preferences match behavioral engagement. It's only available for completed Full Protocol sessions.
+
+    See [Correspondence Analysis](/edgeflow/concepts/correspondence) for details.
+  </Accordion>
+
+  <Accordion title="What do the correspondence classifications mean?">
+    | Classification | Meaning |
+    | --- | --- |
+    | HP/LP | High force for high-preference, low force for low-preference (ideal) |
+    | HP-Only | High force for HP only |
+    | LP-Only | Low force for LP only |
+    | Decreasing | Force decreases across trials regardless of preference |
+    | Undifferentiated | No clear pattern |
+  </Accordion>
+
+  <Accordion title="How is preference ranking calculated?">
+    Stimuli are scored based on selection order in each VMSWO block (5 points for 1st selection, 1 point for last). Scores are summed across blocks and stimuli are ranked by total score.
+
+    See [Preference Ranking](/edgeflow/concepts/preference-ranking) for details.
+  </Accordion>
+
+  <Accordion title="What statistical tests are available?">
+    EdgeFlow includes a chi-square calculator for testing correspondence significance. You can export data to use other statistical tests in your preferred software.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="EdgeFlow isn't working properly. What should I do?">
+    1. Check [Common Issues](/edgeflow/troubleshooting/common-issues) for your specific problem
+    2. Enable debug logging: Settings > Advanced > Debug Logging
+    3. Restart EdgeFlow
+    4. If issues persist, report on [GitHub](https://github.com/bgfdev/edgeflow/issues)
+  </Accordion>
+
+  <Accordion title="Where can I get help?">
+    - This documentation covers most common questions
+    - [GitHub Issues](https://github.com/bgfdev/edgeflow/issues) for bug reports and feature requests
+    - Check for updates that may resolve your issue
+  </Accordion>
+
+  <Accordion title="How do I report a bug?">
+    1. Go to [GitHub Issues](https://github.com/bgfdev/edgeflow/issues)
+    2. Check if the issue already exists
+    3. Create a new issue with:
+       - OS and EdgeFlow version
+       - Steps to reproduce
+       - Expected vs actual behavior
+       - Log excerpts if available
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Updates
+
+<AccordionGroup>
+  <Accordion title="How do I update EdgeFlow?">
+    Download the latest version from the [releases page](https://github.com/bgfdev/edgeflow/releases) and install it. Your data is preserved during updates.
+  </Accordion>
+
+  <Accordion title="Will updates affect my data?">
+    No. Updates preserve your existing database. However, always maintain current backups before updating.
+  </Accordion>
+</AccordionGroup>

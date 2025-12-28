@@ -1,0 +1,94 @@
+---
+title: "Installation"
+description: "Download and install EdgeFlow on macOS, Windows, or Linux"
+icon: "download"
+---
+
+EdgeFlow is available for macOS, Windows, and Linux. Follow the instructions below for your operating system.
+
+## System Requirements
+
+<CardGroup cols={3}>
+  <Card title="macOS" icon="apple">
+    macOS 10.15 (Catalina) or later
+  </Card>
+  <Card title="Windows" icon="windows">
+    Windows 10 or later (64-bit)
+  </Card>
+  <Card title="Linux" icon="linux">
+    Ubuntu 20.04+ or equivalent
+  </Card>
+</CardGroup>
+
+### Additional Requirements
+
+- **For Conjugate Assessments**: Arduino microcontroller with dynamometer sensor and USB cable
+- **Storage**: Approximately 200MB for application, plus space for stimulus files and database
+
+## Download
+
+Download the latest version for your operating system:
+
+<Tabs>
+  <Tab title="macOS">
+    1. Download the `.dmg` file from the [releases page](https://github.com/bgfdev/edgeflow/releases)
+    2. Open the downloaded `.dmg` file
+    3. Drag EdgeFlow to your Applications folder
+    4. On first launch, right-click and select "Open" to bypass Gatekeeper
+  </Tab>
+  <Tab title="Windows">
+    1. Download the `.msi` installer from the [releases page](https://github.com/bgfdev/edgeflow/releases)
+    2. Run the installer
+    3. Follow the installation wizard prompts
+    4. Launch EdgeFlow from the Start menu
+  </Tab>
+  <Tab title="Linux">
+    1. Download the `.AppImage` or `.deb` file from the [releases page](https://github.com/bgfdev/edgeflow/releases)
+    2. For AppImage: Make executable with `chmod +x EdgeFlow.AppImage` and run
+    3. For .deb: Install with `sudo dpkg -i edgeflow.deb`
+  </Tab>
+</Tabs>
+
+## First Launch
+
+When you first launch EdgeFlow, you'll be prompted to set up the encrypted database:
+
+<Steps>
+  <Step title="Create Password">
+    Enter a secure password for your EdgeFlow database. This password encrypts all participant data stored locally.
+
+    <Warning>
+    Store this password securely. If you forget it, you will not be able to access your data.
+    </Warning>
+  </Step>
+  <Step title="Optional: Save to Keychain">
+    On macOS, you can optionally save the password to your system keychain for automatic unlock on future launches.
+  </Step>
+  <Step title="Complete Setup">
+    EdgeFlow will initialize the encrypted database and open to the home screen.
+  </Step>
+</Steps>
+
+## Verify Installation
+
+After installation, verify EdgeFlow is working correctly:
+
+1. Launch EdgeFlow
+2. Enter your database password
+3. Confirm the home screen loads with the system status panel
+4. If using hardware, connect your Arduino and verify it appears in Settings > Hardware
+
+<Check>
+Installation is complete when you see the EdgeFlow home screen with system readiness indicators.
+</Check>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Quick Start" icon="rocket" href="/edgeflow/quickstart">
+    Run your first assessment
+  </Card>
+  <Card title="Hardware Setup" icon="microchip" href="/edgeflow/hardware/requirements">
+    Configure Arduino dynamometer
+  </Card>
+</CardGroup>
