@@ -1,66 +1,80 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "BGF Development Docs",
+  "theme": "almond",
+  "name": "EdgeFlow",
   "colors": {
-    "primary": "#475569",
-    "light": "#64748B",
-    "dark": "#334155"
+    "primary": "#007dcf",
+    "light": "#0091eb",
+    "dark": "#005a99"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "EdgeFlow",
+        "tab": "Documentation",
         "groups": [
           {
             "group": "Getting Started",
             "pages": [
-              "edgeflow/index",
-              "edgeflow/installation",
-              "edgeflow/quickstart"
+              "docs/index",
+              "docs/installation",
+              "docs/quickstart"
             ]
           },
           {
             "group": "Core Concepts",
             "pages": [
-              "edgeflow/concepts/assessments",
-              "edgeflow/concepts/stimuli",
-              "edgeflow/concepts/preference-ranking",
-              "edgeflow/concepts/correspondence"
+              "docs/concepts/assessments",
+              "docs/concepts/stimuli",
+              "docs/concepts/preference-ranking",
+              "docs/concepts/correspondence"
             ]
           },
           {
             "group": "User Guide",
             "pages": [
-              "edgeflow/guide/participants",
-              "edgeflow/guide/creating-sessions",
-              "edgeflow/guide/running-assessments",
-              "edgeflow/guide/results",
-              "edgeflow/guide/export"
+              "docs/guide/participants",
+              "docs/guide/creating-sessions",
+              "docs/guide/running-assessments",
+              "docs/guide/results",
+              "docs/guide/export"
             ]
           },
           {
             "group": "Hardware Setup",
             "pages": [
-              "edgeflow/hardware/requirements",
-              "edgeflow/hardware/connection",
-              "edgeflow/hardware/calibration"
+              "docs/hardware/requirements",
+              "docs/hardware/connection",
+              "docs/hardware/calibration"
             ]
           },
           {
             "group": "Configuration",
             "pages": [
-              "edgeflow/settings/assessment",
-              "edgeflow/settings/display",
-              "edgeflow/settings/data"
+              "docs/settings/assessment",
+              "docs/settings/display",
+              "docs/settings/data"
             ]
           },
           {
             "group": "Troubleshooting",
             "pages": [
-              "edgeflow/troubleshooting/common-issues",
-              "edgeflow/troubleshooting/faq"
+              "docs/troubleshooting/common-issues",
+              "docs/troubleshooting/faq"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Resources",
+        "groups": [
+          {
+            "group": "Resources",
+            "pages": [
+              "resources/index",
+              "resources/setup-examples",
+              "resources/demos",
+              "resources/downloads"
             ]
           }
         ]
@@ -68,8 +82,9 @@
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/EdgeFlow-light.svg",
+    "dark": "/logo/EdgeFlow-dark.svg",
+    "height": 40
   },
   "navbar": {
     "primary": {
